@@ -1,0 +1,53 @@
+{% extends 'allocation/base.html' %}
+
+{% block title %}Contact Us - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 style="color: #00000d; font-weight: 700;">Contact Us</h1>
+        <p class="lead" style="color: #00000d;">Have questions or need support? We’re here to help!</p>
+    </div>
+
+    <div class="row">
+        <!-- Contact Info -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm p-4 h-100" style="background-color: #fdfdfdff;">
+                <h5 style="color: #000000ff;">Address</h5>
+                <p style="color: #00000d;">CUET Campus, Chittagong, Bangladesh</p>
+                <h5 style="color: #000000ff;">Email</h5>
+                <p style="color: #00000d;">support@nestmate_cuet.com</p>
+                <h5 style="color: #000000ff;">Phone</h5>
+                <p style="color: #00000d;">+880 1234-567890</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-md-8">
+            <div class="card shadow-sm p-4" style="background-color: #fafafaff;">
+                <h4 style="color: #000000ff; font-weight: 600;" class="mb-3">Send Us a Message</h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label" style="color: #00000d;">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label" style="color: #00000d;">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subject" class="form-label" style="color: #00000d;">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label" style="color: #00000d;">Message</label>
+                        <textarea class="form-control" id="message" name="des" rows="5" placeholder="Write your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="background-color: #210470ff; color: #fff; font-weight: 600;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

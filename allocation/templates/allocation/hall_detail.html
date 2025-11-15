@@ -1,0 +1,25 @@
+{% extends 'allocation/base.html' %}
+{% block content %}
+<h2>{{ hall.name }}</h2>
+<p>{{ hall.description }}</p>
+<p><strong>Capacity:</strong> {{ hall.total_rooms }}</p>
+<p><strong>Allocated:</strong> {{ hall.allocations.count }}</p>
+
+<h4>Active allocations</h4>
+<table class="table">
+  <thead><tr><th>Student</th><th>Room</th><th>Allocated at</th></tr></thead>
+  <tbody>
+    {% for a in allocations %}
+    <tr>
+      <td>{{ a.student }}</td>
+      <td>{{ a.room_number }}</td>
+      <td>{{ a.allocated_at|date:"SHORT_DATETIME_FORMAT" }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No active allocations</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'allocate_student' %}" class="btn btn-success">Allocate a student to this hall</a>
+{% endblock %}

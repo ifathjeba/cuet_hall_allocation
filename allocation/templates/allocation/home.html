@@ -1,0 +1,219 @@
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Home - NestMate CUET{% endblock %}
+
+{% block content %}
+
+<!-- Hero / Banner Section -->
+<section class="hero-section position-relative text-center text-white" 
+         style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('{% static 'img/21.jpg' %}') center/cover no-repeat; height: 450px;">
+    <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="display-4 fw-bold" style="color: #ffffffff;">Welcome to NestMate CUET</h1>
+        <p class="lead mt-3" style="color: #f2f1f7ff; max-width: 600px;">
+            Simplifying hall allocation for students and authorities. Get safe, comfortable, and hassle-free accommodation without any physical visits.
+        </p>
+        
+    </div>
+
+    <!-- Optional floating icons / illustrations -->
+    <img src="{% static 'img/hall_icon1.png' %}" alt="" 
+         style="position: absolute; bottom: 20px; left: 30px; width: 50px; opacity: 0.7;">
+    <img src="{% static 'img/hall_icon2.png' %}" alt="" 
+         style="position: absolute; bottom: 50px; right: 40px; width: 60px; opacity: 0.6;">
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5" style="background-color: #E6E0FF;">
+    <div class="container text-center">
+        <h2 class="mb-4" style="color: #00000d; font-weight: 700;">How It Works</h2>
+        <p class="mb-5" style="color: #00000d; font-size: 1.1rem;">
+            A simple and transparent hall allocation system to help students and authorities manage dorms easily.
+        </p>
+        <div class="row g-4">
+            <!-- Step 1: Register -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 shadow-sm border-0 text-center" 
+                     style="background-color: #ffffff; transition: transform 0.3s;">
+                    <div class="mb-3">
+                        <img src="{% static 'img/22.jpg' %}" alt="Register" 
+                             style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                    </div>
+                    <h5 class="mb-3" style="color: #000000ff; font-weight: 600;">Register</h5>
+                    <p class="text-dark">
+                        Create your account as a student or hall authority. Secure login ensures your data is protected.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2: Apply / Allocate -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 shadow-sm border-0 text-center"
+                     style="background-color: #ffffff; transition: transform 0.3s;">
+                    <div class="mb-3">
+                        <img src="{% static 'img/9.jpg' %}" alt="Apply or Allocate" 
+                             style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                    </div>
+                    <h5 class="mb-3" style="color: #000000ff; font-weight: 600;">Apply / Allocate</h5>
+                    <p class="text-dark">
+                        Students apply for halls online, and authorities can allocate rooms efficiently with a few clicks.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3: Enjoy Campus Life -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 shadow-sm border-0 text-center"
+                     style="background-color: #ffffff; transition: transform 0.3s;">
+                    <div class="mb-3">
+                        <img src="{% static 'img/17.jpg' %}" alt="Enjoy Campus Life" 
+                             style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+                    </div>
+                    <h5 class="mb-3" style="color: #000000ff; font-weight: 600;">Enjoy Campus Life</h5>
+                    <p class="text-dark">
+                        Live comfortably, focus on studies, and enjoy the social life while the system handles hall management.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Optional: Hover effect with CSS -->
+<style>
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+</style>
+
+
+
+
+
+
+<!-- Our Halls Section -->
+<section class="py-5" style="background-color: #E6E0FF;">
+    <div class="container text-center">
+        <h2 class="mb-4" style="color: #00000d; font-weight: 700;">Our Halls</h2>
+        <p class="mb-5" style="color: #00000d; font-size: 1.1rem;">
+            NestMate CUET offers comfortable, safe, and well-equipped halls for students. Each hall has unique facilities and a supportive environment for academic and personal growth.
+        </p>
+        <div class="row g-4">
+            <!-- Shamshen Nahar Hall -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.3s;">
+                    <img src="{% static 'img/20.jpg' %}" class="card-img-top" alt="Shamshen Nahar Hall" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-start">
+                        <h5 style="color: #000000ff; font-weight: 600;">Shamshen Nahar Hall</h5>
+                        <p><strong>Capacity:</strong> (600-650) students</p>
+                        <p><strong>Facilities:</strong> Spacious rooms, Wi-Fi, study lounges, common kitchen, 24/7 security, library corner</p>
+                        <p><strong>Special Feature:</strong> Quiet study zones for exam preparation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Taposee Rabeya Hall -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.3s;">
+                    <img src="{% static 'img/19.jpg' %}" class="card-img-top" alt="Taposee Rabeya Hall" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-start">
+                        <h5 style="color: #000000ff; font-weight: 600;">Taposee Rabeya Hall</h5>
+                        <p><strong>Capacity:</strong> (300-350) students</p>
+                        <p><strong>Facilities:</strong> Common rooms, indoor games, Wi-Fi, laundry facilities, cafeteria, security</p>
+                        <p><strong>Special Feature:</strong> Friendly and social environment for academic and extracurricular activities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sufia Kamal Hall -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.3s;">
+                    <img src="{% static 'img/hall3.jpg' %}" class="card-img-top" alt="Sufia Kamal Hall" style="height: 250px; object-fit: cover;">
+                    <div class="card-body text-start">
+                        <h5 style="color: #000000ff; font-weight: 600;">Sufia Kamal Hall</h5>
+                        <p><strong>Capacity:</strong> (250-300) students</p>
+                        <p><strong>Facilities:</strong> Safe and secure rooms, 24/7 security, Wi-Fi, study halls, recreational area, medical assistance</p>
+                        <p><strong>Special Feature:</strong> Largest hall with spacious common areas for group activities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Optional hover effect -->
+<style>
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+</style>
+
+<!-- How It Helps Section -->
+<section class="py-5" style="background-color: #E6E0FF;">
+    <div class="container text-center">
+        <h2 class="mb-4" style="color: #00000d; font-weight: 700;">How It Helps Students</h2>
+        <p class="mb-5" style="color: #00000d; font-size: 1.1rem;">
+            Our platform simplifies hall management, saves time, and ensures every student gets proper accommodation without hassle. Authorities can monitor hall allocation efficiently while students enjoy a smooth experience.
+        </p>
+        <div class="row g-4">
+
+            <!-- Easy Allocation -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 shadow-sm border-0 text-center"
+                     style="background-color: #a7b5c9ff; color: #000000ff; transition: transform 0.3s;">
+                    <div class="mb-3">
+                        <img src="{% static 'img/5.jpg' %}" alt="Easy Allocation" 
+                             style="width: 150px; height: 80px; object-fit: cover; border-radius: 00%; border: 2px solid #fff;">
+                    </div>
+                    <h5 class="mb-3" style="font-weight: 600;">Quick Room Allocation</h5>
+                    <p>
+                        Students can apply for available halls online, and rooms are allocated quickly without the need to physically meet the provost or hall authorities.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Transparency -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 shadow-sm border-0 text-center"
+                     style="background-color: #a7b5c9ff; color: #000000ff; transition: transform 0.3s;">
+                    <div class="mb-3">
+                        <img src="{% static 'img/7.jpg' %}" alt="Transparency" 
+                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid #fff;">
+                    </div>
+                    <h5 class="mb-3" style="font-weight: 600;">Full Transparency</h5>
+                    <p>
+                        All applications and allocations are visible online to students and authorities. This ensures fairness, prevents errors, and keeps everyone informed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Student Friendly -->
+            <div class="col-md-4">
+                <div class="card h-100 p-4 shadow-sm border-0 text-center"
+                     style="background-color: #a7b5c9ff; color: #000000ff; transition: transform 0.3s;">
+                    <div class="mb-3">
+                        <img src="{% static 'img/11.jpg' %}" alt="Happy Students" 
+                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid #fff;">
+                    </div>
+                    <h5 class="mb-3" style="font-weight: 600;">Student Friendly</h5>
+                    <p>
+                        Students can easily view available halls, apply online, and track their allocations. The interface is intuitive, reducing confusion and saving time.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Optional: Hover effect -->
+<style>
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Application Status{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Application</h2>
+    <p><strong>Hall:</strong> {{ application.hall.name }}</p>
+    <p><strong>Room type:</strong> {{ application.room_type }}</p>
+    <p><strong>Status:</strong>
+        {% if application.status == 'pending' %}
+            <span class="badge bg-warning text-dark">Pending</span>
+        {% elif application.status == 'approved' %}
+            <span class="badge bg-success">Approved</span>
+        {% else %}
+            <span class="badge bg-danger">Rejected</span>
+        {% endif %}
+    </p>
+    <p><small>Applied at: {{ application.applied_at }}</small></p>
+</div>
+{% endblock %}

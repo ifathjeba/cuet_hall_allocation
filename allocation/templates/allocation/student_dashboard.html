@@ -1,0 +1,131 @@
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+
+{% block title %}Student Dashboard - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Welcome Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Welcome, {{ request.user.username }}</h2>
+        <div>
+            <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle" width="50" height="50">
+            <a href="{% url 'logout' %}" class="btn btn-sm btn-danger ms-2">Logout</a>
+        </div>
+    </div>
+
+    <!-- Hall Information -->
+    <div class="mb-5">
+        <h4 class="mb-3">Your Hall Allocation</h4>
+        <div class="card p-3 shadow-sm">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <img src="{% static 'img/19.jpg' %}" class="img-fluid rounded" alt="Hall Image">
+                </div>
+                <div class="col-md-9">
+                    <h5>Hall Name: <strong>Hall A</strong></h5>
+                    <p>Room Number: <strong>203</strong></p>
+                    <p>Floor: <strong>2nd Floor</strong></p>
+                    <p>Capacity: <strong>4 students per room</strong></p>
+                    <a href="#" class="btn btn-primary btn-sm mt-2">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Facilities Section -->
+    <div class="mb-5">
+        <h4 class="mb-3">Facilities in Your Hall</h4>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-book fa-2x mb-2 text-primary"></i>
+                    <h6>Library</h6>
+                    <p>Access a variety of academic and recreational books anytime.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-dumbbell fa-2x mb-2 text-success"></i>
+                    <h6>Gymnasium</h6>
+                    <p>Stay fit and healthy with modern workout equipment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-praying-hands fa-2x mb-2 text-warning"></i>
+                    <h6>Prayer Room</h6>
+                    <p>Dedicated space for students to perform daily prayers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-utensils fa-2x mb-2 text-danger"></i>
+                    <h6>Canteen</h6>
+                    <p>Enjoy meals and snacks at affordable prices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-tv fa-2x mb-2 text-info"></i>
+                    <h6>TV Room</h6>
+                    <p>Relax and watch shows or news with friends.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-chair fa-2x mb-2 text-secondary"></i>
+                    <h6>Waiting Room</h6>
+                    <p>Comfortable seating area for guests and visitors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mb-5">
+        <h4 class="mb-3">Quick Actions</h4>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-primary w-100 p-3">
+                    <i class="fa-solid fa-calendar-days fa-lg mb-2"></i><br>
+                    View My Schedule
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-success w-100 p-3">
+                    <i class="fa-solid fa-envelope fa-lg mb-2"></i><br>
+                    Send Request
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-warning w-100 p-3">
+                    <i class="fa-solid fa-file-lines fa-lg mb-2"></i><br>
+                    View Notices
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-danger w-100 p-3">
+                    <i class="fa-solid fa-circle-info fa-lg mb-2"></i><br>
+                    Hall Info
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback / Suggestions -->
+    <div class="mb-5">
+        <h4 class="mb-3">Feedback / Suggestions</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <textarea class="form-control" rows="4" name="feedback" placeholder="Write your feedback or suggestion here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

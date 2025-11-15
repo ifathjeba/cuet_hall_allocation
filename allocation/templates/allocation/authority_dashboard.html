@@ -1,0 +1,120 @@
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Authority Dashboard - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Welcome, {{ request.user.username }}</h2>
+        <div class="d-flex align-items-center">
+            <img src="{% static 'img/23.jpg' %}" alt="Profile" class="rounded-circle" width="50" height="50">
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm ms-3">Logout</a>
+        </div>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-user-graduate fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Total Students</h5>
+                <p class="h4">{{ total_students }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-envelope-open-text fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Pending Applications</h5>
+                <p class="h4">{{ pending_applications }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-dumbbell fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Gym Usage</h5>
+                <p class="h4">{{ gym_count }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-book fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Library Users</h5>
+                <p class="h4">{{ library_count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Applications Table -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Pending Room Applications
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Hall</th>
+                        <th>Room Type</th>
+                        <th>Date Submitted</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in pending_apps %}
+                    <tr>
+                        <td>{{ app.student.username }}</td>
+                        <td>{{ app.hall_name }}</td>
+                        <td>{{ app.room_type }}</td>
+                        <td>{{ app.submission_date }}</td>
+                        <td>
+                            <a href="{% url 'approve_application' app.id %}" class="btn btn-success btn-sm">Approve</a>
+                            <a href="{% url 'reject_application' app.id %}" class="btn btn-danger btn-sm">Reject</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No pending applications</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Hall Activities -->
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            Hall Activity Logs
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Hall</th>
+                        <th>Activity</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in hall_logs %}
+                    <tr>
+                        <td>{{ log.student.username }}</td>
+                        <td>{{ log.hall_name }}</td>
+                        <td>{{ log.activity }}</td>
+                        <td>{{ log.timestamp }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No activity recorded</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

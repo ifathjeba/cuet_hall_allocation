@@ -1,0 +1,21 @@
+{% extends 'allocation/base.html' %}
+{% block content %}
+<h1>Halls</h1>
+<div class="row">
+  {% for hall in halls %}
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ hall.name }}</h5>
+          <p class="card-text">{{ hall.description|default:"No description." }}</p>
+          <p><strong>Capacity:</strong> {{ hall.total_rooms }}</p>
+          <p><strong>Available:</strong> {{ hall.available_rooms_count }}</p>
+          <a href="{% url 'hall_detail' hall.pk %}" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No halls configured yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
