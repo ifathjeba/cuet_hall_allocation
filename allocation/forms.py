@@ -21,3 +21,7 @@ class RoomApplicationForm(forms.ModelForm):
     class Meta:
         model = RoomApplication
         exclude = ['status', 'applied_at']
+        widgets = {
+            'gender': forms.Select(attrs={'class': 'form-control'}),
+        }
+

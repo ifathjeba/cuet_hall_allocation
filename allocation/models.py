@@ -17,6 +17,12 @@ class Hall(models.Model):
         return self.name
 
 
+
+GENDER_CHOICES = [
+    ('male', 'Male'),
+    ('female', 'Female'),
+    ('other', 'Other'),
+]
 class RoomApplication(models.Model):
     # Personal info
     first_name = models.CharField(max_length=100)
@@ -24,7 +30,7 @@ class RoomApplication(models.Model):
     student_id = models.CharField(max_length=50)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    gender = models.CharField(max_length=20)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
 
     # Academic info
     department = models.CharField(max_length=50)
