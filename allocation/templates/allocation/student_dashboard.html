@@ -1,7 +1,6 @@
 {% extends 'allocation/base.html' %}
 {% load static %}
 
-
 {% block title %}Student Dashboard - NestMate CUET{% endblock %}
 
 {% block content %}
@@ -10,122 +9,115 @@
     <!-- Welcome Section -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Welcome, {{ request.user.username }}</h2>
-        <div>
-            <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle" width="50" height="50">
-            <a href="{% url 'logout' %}" class="btn btn-sm btn-danger ms-2">Logout</a>
+        <div class="d-flex align-items-center">
+            <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle me-2" width="50" height="50">
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
         </div>
     </div>
 
-    <!-- Hall Information -->
+   
+
+    <!-- Student Applications -->
     <div class="mb-5">
-        <h4 class="mb-3">Your Hall Allocation</h4>
-        <div class="card p-3 shadow-sm">
-            <div class="row align-items-center">
-                <div class="col-md-3">
-                    <img src="{% static 'img/19.jpg' %}" class="img-fluid rounded" alt="Hall Image">
-                </div>
-                <div class="col-md-9">
-                    <h5>Hall Name: <strong>Hall A</strong></h5>
-                    <p>Room Number: <strong>203</strong></p>
-                    <p>Floor: <strong>2nd Floor</strong></p>
-                    <p>Capacity: <strong>4 students per room</strong></p>
-                    <a href="#" class="btn btn-primary btn-sm mt-2">View Details</a>
-                </div>
+        <h4 class="mb-3">Your Hall Room Applications</h4>
+        {% if room_applications %}
+            <div class="row g-3">
+                {% for app in room_applications %}
+                    <div class="col-md-6">
+                        <div class="card shadow-sm p-3 hover-shadow">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="{% static 'img/hall_a.jpg' %}" alt="Hall Image" class="rounded me-3" width="80" height="80">
+                                <div>
+                                    <h5 class="mb-1">{{ app.first_name }} {{ app.last_name }}</h5>
+                                    <p class="mb-0"><strong>ID:</strong> {{ app.student_id }}</p>
+                                </div>
+                            </div>
+                            <p><strong>Email:</strong> {{ app.email }}</p>
+                            <p><strong>Phone:</strong> {{ app.phone }}</p>
+                            <p>
+                                <strong>Hall:</strong> {{ app.hall }} <br>
+                                <strong>Room Type:</strong> {{ app.room_type }}
+                            </p>
+                            <p>
+                                <strong>Status:</strong>
+                                {% if app.status == 'pending' %}
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                    <small class="text-muted d-block">Your application is being reviewed.</small>
+                                {% elif app.status == 'approved' %}
+                                    <span class="badge bg-success">Approved</span>
+                                    <small class="text-muted d-block">Congratulations! Your room is allocated.</small>
+                                {% else %}
+                                    <span class="badge bg-danger">Rejected</span>
+                                    <small class="text-muted d-block">Reason: {{ app.rejection_reason|default:"Please contact the authority for details." }}</small>
+                                {% endif %}
+                            </p>
+                            <p><strong>Applied At:</strong> {{ app.applied_at|date:"d M Y H:i" }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        </div>
+        {% else %}
+            <div class="text-center p-5 bg-light rounded shadow-sm">
+                <img src="{% static 'img/no_application.png' %}" class="mb-3" width="120" alt="No Application">
+                <p class="mb-0">You have not submitted any applications yet.</p>
+                <a href="{% url 'student_apply_room' %}" class="btn btn-primary mt-2">Apply Now</a>
+            </div>
+        {% endif %}
     </div>
 
-    <!-- Facilities Section -->
+    <!-- Hall Facilities Section -->
     <div class="mb-5">
-        <h4 class="mb-3">Facilities in Your Hall</h4>
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="card text-center p-3 shadow-sm">
-                    <i class="fa-solid fa-book fa-2x mb-2 text-primary"></i>
+        <h4 class="mb-3">Hall Facilities</h4>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/30.jpg' %}" class="card-img-top rounded mb-2" alt="Library">
                     <h6>Library</h6>
-                    <p>Access a variety of academic and recreational books anytime.</p>
+                    <p class="text-muted small">A well-equipped library with books and study space.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-center p-3 shadow-sm">
-                    <i class="fa-solid fa-dumbbell fa-2x mb-2 text-success"></i>
-                    <h6>Gymnasium</h6>
-                    <p>Stay fit and healthy with modern workout equipment.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center p-3 shadow-sm">
-                    <i class="fa-solid fa-praying-hands fa-2x mb-2 text-warning"></i>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/31.jpg' %}" class="card-img-top rounded mb-2" alt="Prayer Room">
                     <h6>Prayer Room</h6>
-                    <p>Dedicated space for students to perform daily prayers.</p>
+                    <p class="text-muted small">Separate spaces for students to pray comfortably.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-center p-3 shadow-sm">
-                    <i class="fa-solid fa-utensils fa-2x mb-2 text-danger"></i>
-                    <h6>Canteen</h6>
-                    <p>Enjoy meals and snacks at affordable prices.</p>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/29.jpg' %}" class="card-img-top rounded mb-2" alt="Gymnasium">
+                    <h6>Gymnasium</h6>
+                    <p class="text-muted small">Well-maintained gym for health and fitness activities.</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-center p-3 shadow-sm">
-                    <i class="fa-solid fa-tv fa-2x mb-2 text-info"></i>
-                    <h6>TV Room</h6>
-                    <p>Relax and watch shows or news with friends.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center p-3 shadow-sm">
-                    <i class="fa-solid fa-chair fa-2x mb-2 text-secondary"></i>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/27.jpg' %}" class="card-img-top rounded mb-2" alt="Waiting Room">
                     <h6>Waiting Room</h6>
-                    <p>Comfortable seating area for guests and visitors.</p>
+                    <p class="text-muted small">Comfortable waiting area for guests and visitors.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/28.jpg' %}" class="card-img-top rounded mb-2" alt="TV Room">
+                    <h6>TV Room</h6>
+                    <p class="text-muted small">Relaxing space with entertainment facilities.</p>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="mb-5">
-        <h4 class="mb-3">Quick Actions</h4>
-        <div class="row g-3">
-            <div class="col-md-3">
-                <a href="#" class="btn btn-outline-primary w-100 p-3">
-                    <i class="fa-solid fa-calendar-days fa-lg mb-2"></i><br>
-                    View My Schedule
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="#" class="btn btn-outline-success w-100 p-3">
-                    <i class="fa-solid fa-envelope fa-lg mb-2"></i><br>
-                    Send Request
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="#" class="btn btn-outline-warning w-100 p-3">
-                    <i class="fa-solid fa-file-lines fa-lg mb-2"></i><br>
-                    View Notices
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="#" class="btn btn-outline-danger w-100 p-3">
-                    <i class="fa-solid fa-circle-info fa-lg mb-2"></i><br>
-                    Hall Info
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feedback / Suggestions -->
-    <div class="mb-5">
-        <h4 class="mb-3">Feedback / Suggestions</h4>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                <textarea class="form-control" rows="4" name="feedback" placeholder="Write your feedback or suggestion here..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Feedback</button>
-        </form>
     </div>
 
 </div>
+
+<style>
+.hover-shadow:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+.card img {
+    height: 120px;
+    object-fit: cover;
+}
+</style>
+
 {% endblock %}

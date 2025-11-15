@@ -5,45 +5,119 @@
 
 {% block content %}
 <div class="container-fluid py-4">
+
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Welcome, {{ request.user.username }}</h2>
+        <h2>Welcome, Authority</h2>
         <div class="d-flex align-items-center">
-            <img src="{% static 'img/23.jpg' %}" alt="Profile" class="rounded-circle" width="50" height="50">
-            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm ms-3">Logout</a>
+            <img src="{% static 'img/23.jpg' %}" alt="Profile" class="rounded-circle me-2" width="50" height="50">
+            <a href="#" class="btn btn-danger btn-sm">Logout</a>
         </div>
     </div>
 
-    <!-- Dashboard Cards -->
+    <!-- Dashboard Stats -->
     <div class="row mb-4">
         <div class="col-md-3 mb-3">
             <div class="card text-center shadow-sm p-3">
-                <i class="fa-solid fa-user-graduate fa-2x mb-2" style="color: #210a61ff;"></i>
+                <i class="fa-solid fa-user-graduate fa-2x mb-2 text-primary"></i>
                 <h5>Total Students</h5>
-                <p class="h4">{{ total_students }}</p>
+                <p class="h4">1200</p>
             </div>
         </div>
         <div class="col-md-3 mb-3">
             <div class="card text-center shadow-sm p-3">
-                <i class="fa-solid fa-envelope-open-text fa-2x mb-2" style="color: #210a61ff;"></i>
+                <i class="fa-solid fa-envelope-open-text fa-2x mb-2 text-warning"></i>
                 <h5>Pending Applications</h5>
-                <p class="h4">{{ pending_applications }}</p>
+                <p class="h4">35</p>
             </div>
         </div>
         <div class="col-md-3 mb-3">
             <div class="card text-center shadow-sm p-3">
-                <i class="fa-solid fa-dumbbell fa-2x mb-2" style="color: #210a61ff;"></i>
-                <h5>Gym Usage</h5>
-                <p class="h4">{{ gym_count }}</p>
+                <i class="fa-solid fa-check fa-2x mb-2 text-success"></i>
+                <h5>Approved</h5>
+                <p class="h4">1100</p>
             </div>
         </div>
         <div class="col-md-3 mb-3">
             <div class="card text-center shadow-sm p-3">
-                <i class="fa-solid fa-book fa-2x mb-2" style="color: #210a61ff;"></i>
-                <h5>Library Users</h5>
-                <p class="h4">{{ library_count }}</p>
+                <i class="fa-solid fa-xmark fa-2x mb-2 text-danger"></i>
+                <h5>Rejected</h5>
+                <p class="h4">65</p>
             </div>
         </div>
+    </div>
+
+
+
+
+
+     <!-- Recent Student Activities -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            Recent Student Activities
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Action</th>
+                        <th>Hall</th>
+                        <th>Date/Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="{% static 'img/25.jpg' %}" width="30" class="rounded-circle me-1"> Ayesha Samin</td>
+                        <td>Applied for Standard Room(4 People)</td>
+                        <td>Shamshen Nahar Hall</td>
+                        <td>12 Nov 2025 14:30</td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="{% static 'img/23.jpg' %}" width="30" class="rounded-circle me-1"> Maimuna Tabassum</td>
+                        <td>Application Approved</td>
+                        <td>Shamshen Nahar Hall</td>
+                        <td>14 Nov 2025 16:45</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><img src="{% static 'img/8.jpg' %}" width="30" class="rounded-circle me-1"> Abunti Barua</td>
+                        <td>Applied for Standard Room(4 People)</td>
+                        <td>Shamshen Nahar Hall</td>
+                        <td>13 Nov 2025 09:20</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+     <!-- Hall Occupancy Overview -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm p-3 text-center">
+                <img src="{% static 'img/20.jpg' %}" alt="Hall A" class="img-fluid mb-2 rounded">
+                <h6>Shamshen Nahar Hall</h6>
+                <p>620 / 650 Students</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm p-3 text-center">
+                <img src="{% static 'img/19.jpg' %}" alt="Hall B" class="img-fluid mb-2 rounded">
+                <h6>Tapashi Rabeya Hall</h6>
+                <p>310 / 380 Students</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm p-3 text-center">
+                <img src="{% static 'img/26.jpg' %}" alt="Hall C" class="img-fluid mb-2 rounded">
+                <h6>Sufia Kamal Hall</h6>
+                <p> 270/ 300 Students</p>
+            </div>
+        </div>
+        
     </div>
 
     <!-- Pending Applications Table -->
@@ -52,69 +126,61 @@
             Pending Room Applications
         </div>
         <div class="card-body table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover align-middle">
                 <thead>
                     <tr>
                         <th>Student</th>
+                        <th>Student ID</th>
                         <th>Hall</th>
                         <th>Room Type</th>
-                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Applied At</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for app in pending_apps %}
                     <tr>
-                        <td>{{ app.student.username }}</td>
-                        <td>{{ app.hall_name }}</td>
-                        <td>{{ app.room_type }}</td>
-                        <td>{{ app.submission_date }}</td>
+                        <td>Sanzana Saif Era</td>
+                        <td>2104116</td>
+                        <td>Tapashi Rabeya Hall</td>
+                        <td>Standard Room (4 People)</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <td>12 Nov 2025 14:30</td>
                         <td>
-                            <a href="{% url 'approve_application' app.id %}" class="btn btn-success btn-sm">Approve</a>
-                            <a href="{% url 'reject_application' app.id %}" class="btn btn-danger btn-sm">Reject</a>
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
                         </td>
                     </tr>
-                    {% empty %}
                     <tr>
-                        <td colspan="5" class="text-center">No pending applications</td>
+                        <td>Ariana Rutba</td>
+                        <td>2104115</td>
+                        <td>Tapashi Rabeya Hall</td>
+                        <td>Standard Room (4 People)</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <td>13 Nov 2025 09:20</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                        </td>
                     </tr>
-                    {% endfor %}
+                    <tr>
+                        <td>Aynany Tazrian</td>
+                        <td>2103112</td>
+                        <td>Shamshen Naher Hall</td>
+                        <td>Standard Room (4 People)</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <td>14 Nov 2025 16:45</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Hall Activities -->
-    <div class="card">
-        <div class="card-header bg-secondary text-white">
-            Hall Activity Logs
-        </div>
-        <div class="card-body table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Student</th>
-                        <th>Hall</th>
-                        <th>Activity</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for log in hall_logs %}
-                    <tr>
-                        <td>{{ log.student.username }}</td>
-                        <td>{{ log.hall_name }}</td>
-                        <td>{{ log.activity }}</td>
-                        <td>{{ log.timestamp }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4" class="text-center">No activity recorded</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+   
+   
 </div>
 {% endblock %}

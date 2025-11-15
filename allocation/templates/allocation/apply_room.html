@@ -1,46 +1,62 @@
 {% extends 'allocation/base.html' %}
+{% load static %}
 
 {% block title %}Apply for Hall Room{% endblock %}
 
 {% block content %}
 <div class="container mt-5 mb-5">
     <h2 class="mb-4 text-center">Hall Room Application Form</h2>
-    
+
     <form method="POST">
         {% csrf_token %}
+        {{ form.non_field_errors }}
 
         <!-- Personal Information -->
         <div class="card mb-4 p-4">
             <h4 class="mb-3">Personal Information</h4>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="first_name" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="text-danger small">{{ form.first_name.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="last_name" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="text-danger small">{{ form.last_name.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="student_id" class="form-label">Student ID</label>
-                    <input type="text" class="form-control" id="student_id" name="student_id" required>
+                    {{ form.student_id.label_tag }}
+                    {{ form.student_id }}
+                    {% if form.student_id.errors %}
+                        <div class="text-danger small">{{ form.student_id.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="email" class="form-label">University Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="text-danger small">{{ form.email.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    {% if form.phone.errors %}
+                        <div class="text-danger small">{{ form.phone.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="gender" class="form-label">Gender</label>
-                    <select class="form-select" id="gender" name="gender" required>
-                        <option value="" selected disabled>Choose...</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
+                    {{ form.gender.label_tag }}
+                    {{ form.gender }}
+                    {% if form.gender.errors %}
+                        <div class="text-danger small">{{ form.gender.errors }}</div>
+                        
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -50,24 +66,25 @@
             <h4 class="mb-3">Academic Information</h4>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="faculty" class="form-label">Faculty / Department</label>
-                    <input type="text" class="form-control" id="faculty" name="faculty" required>
-                </div>
-                
-                <div class="col-md-6">
-                    <label for="year" class="form-label">Year of Study</label>
-                    <select class="form-select" id="year" name="year" required>
-                        <option value="" selected disabled>Choose...</option>
-                        <option value="1">1st Year</option>
-                        <option value="2">2nd Year</option>
-                        <option value="3">3rd Year</option>
-                        <option value="4">4th Year</option>
-                        <option value="5">5th Year</option>
-                    </select>
+                    {{ form.department.label_tag }}
+                    {{ form.department }}
+                    {% if form.department.errors %}
+                        <div class="text-danger small">{{ form.department.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="session" class="form-label">Academic Session</label>
-                    <input type="text" class="form-control" id="session" name="session" placeholder="e.g., 2025-26" required>
+                    {{ form.year.label_tag }}
+                    {{ form.year }}
+                    {% if form.year.errors %}
+                        <div class="text-danger small">{{ form.year.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {{ form.session.label_tag }}
+                    {{ form.session }}
+                    {% if form.session.errors %}
+                        <div class="text-danger small">{{ form.session.errors }}</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -77,45 +94,53 @@
             <h4 class="mb-3">Room Preferences</h4>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="hall" class="form-label">Preferred Hall</label>
-                    <select class="form-select" id="hall" name="hall" required>
-                        <option value="" selected disabled>Choose Hall</option>
-                        <option value="hall_a">Shamshen Naher Hall </option>
-                        <option value="hall_b">Sufia Kamal Hall</option>
-                        <option value="hall_c">Tapose Rabeya Hall </option>
-                        
-                    </select>
+                    {{ form.hall.label_tag }}
+                    {{ form.hall }}
+                    {% if form.hall.errors %}
+                        <div class="text-danger small">{{ form.hall.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="room_type" class="form-label">Room Type</label>
-                    <select class="form-select" id="room_type" name="room_type" required>
-                        <option value="" selected disabled>Choose Room Type</option>
-                        <option value="standard">Standard Room (4 People)</option>
-                        <option value="gonoroom">Gono Room (6 People)</option>
-                    </select>
+                    {{ form.room_type.label_tag }}
+                    {{ form.room_type }}
+                    {% if form.room_type.errors %}
+                        <div class="text-danger small">{{ form.room_type.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-12">
-                    <label for="special_requests" class="form-label">Special Requests (Optional)</label>
-                    <textarea class="form-control" id="special_requests" name="special_requests" rows="3" placeholder="Any specific needs or preferences"></textarea>
+                    {{ form.special_requests.label_tag }}
+                    {{ form.special_requests }}
+                    {% if form.special_requests.errors %}
+                        <div class="text-danger small">{{ form.special_requests.errors }}</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
 
-        <!-- Guardian / Emergency Contact -->
+        <!-- Guardian Information -->
         <div class="card mb-4 p-4">
             <h4 class="mb-3">Guardian / Emergency Contact</h4>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="guardian_name" class="form-label">Guardian Name</label>
-                    <input type="text" class="form-control" id="guardian_name" name="guardian_name" required>
+                    {{ form.guardian_name.label_tag }}
+                    {{ form.guardian_name }}
+                    {% if form.guardian_name.errors %}
+                        <div class="text-danger small">{{ form.guardian_name.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="guardian_phone" class="form-label">Guardian Phone</label>
-                    <input type="tel" class="form-control" id="guardian_phone" name="guardian_phone" required>
+                    {{ form.guardian_phone.label_tag }}
+                    {{ form.guardian_phone }}
+                    {% if form.guardian_phone.errors %}
+                        <div class="text-danger small">{{ form.guardian_phone.errors }}</div>
+                    {% endif %}
                 </div>
                 <div class="col-md-12">
-                    <label for="guardian_email" class="form-label">Guardian Email (Optional)</label>
-                    <input type="email" class="form-control" id="guardian_email" name="guardian_email">
+                    {{ form.guardian_email.label_tag }}
+                    {{ form.guardian_email }}
+                    {% if form.guardian_email.errors %}
+                        <div class="text-danger small">{{ form.guardian_email.errors }}</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -127,3 +152,9 @@
     </form>
 </div>
 {% endblock %}
+
+
+
+
+
+

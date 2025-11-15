@@ -1,0 +1,397 @@
+{% extends 'allocation/base.html' %}
+
+{% block title %}Apply for Hall Room{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h2 class="mb-4 text-center">Hall Room Application Form</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Personal Information -->
+        <div class="card mb-4 p-4">
+            <h4 class="mb-3">Personal Information</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="student_id" class="form-label">Student ID</label>
+                    <input type="text" class="form-control" id="student_id" name="student_id" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">University Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" name="gender" required>
+                        <option value="" selected disabled>Choose...</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Information -->
+        <div class="card mb-4 p-4">
+            <h4 class="mb-3">Academic Information</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="faculty" class="form-label">Faculty / Department</label>
+                    <input type="text" class="form-control" id="faculty" name="faculty" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="year" class="form-label">Year of Study</label>
+                    <select class="form-select" id="year" name="year" required>
+                        <option value="" selected disabled>Choose...</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                        <option value="5">5th Year</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="session" class="form-label">Academic Session</label>
+                    <input type="text" class="form-control" id="session" name="session" placeholder="e.g., 2025-26" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room Preferences -->
+        <div class="card mb-4 p-4">
+            <h4 class="mb-3">Room Preferences</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="hall" class="form-label">Preferred Hall</label>
+                    <select class="form-select" id="hall" name="hall" required>
+                        <option value="" selected disabled>Choose Hall</option>
+                        <option value="hall_a">Shamshen Naher Hall </option>
+                        <option value="hall_b">Sufia Kamal Hall</option>
+                        <option value="hall_c">Tapose Rabeya Hall </option>
+                        
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="room_type" class="form-label">Room Type</label>
+                    <select class="form-select" id="room_type" name="room_type" required>
+                        <option value="" selected disabled>Choose Room Type</option>
+                        <option value="standard">Standard Room (4 People)</option>
+                        <option value="gonoroom">Gono Room (6 People)</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label for="special_requests" class="form-label">Special Requests (Optional)</label>
+                    <textarea class="form-control" id="special_requests" name="special_requests" rows="3" placeholder="Any specific needs or preferences"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guardian / Emergency Contact -->
+        <div class="card mb-4 p-4">
+            <h4 class="mb-3">Guardian / Emergency Contact</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="guardian_name" class="form-label">Guardian Name</label>
+                    <input type="text" class="form-control" id="guardian_name" name="guardian_name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="guardian_phone" class="form-label">Guardian Phone</label>
+                    <input type="tel" class="form-control" id="guardian_phone" name="guardian_phone" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="guardian_email" class="form-label">Guardian Email (Optional)</label>
+                    <input type="email" class="form-control" id="guardian_email" name="guardian_email">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mb-5">
+            <button type="submit" class="btn btn-custom btn-lg">Submit Application</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+### student_dashboard.html
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+
+{% block title %}Student Dashboard - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Welcome Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Welcome, {{ request.user.username }}</h2>
+        <div>
+            <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle" width="50" height="50">
+            <a href="{% url 'logout' %}" class="btn btn-sm btn-danger ms-2">Logout</a>
+        </div>
+    </div>
+
+    <!-- Hall Information -->
+    <div class="mb-5">
+        <h4 class="mb-3">Your Hall Allocation</h4>
+        <div class="card p-3 shadow-sm">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <img src="{% static 'img/19.jpg' %}" class="img-fluid rounded" alt="Hall Image">
+                </div>
+                <div class="col-md-9">
+                    <h5>Hall Name: <strong>Hall A</strong></h5>
+                    <p>Room Number: <strong>203</strong></p>
+                    <p>Floor: <strong>2nd Floor</strong></p>
+                    <p>Capacity: <strong>4 students per room</strong></p>
+                    <a href="#" class="btn btn-primary btn-sm mt-2">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Facilities Section -->
+    <div class="mb-5">
+        <h4 class="mb-3">Facilities in Your Hall</h4>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-book fa-2x mb-2 text-primary"></i>
+                    <h6>Library</h6>
+                    <p>Access a variety of academic and recreational books anytime.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-dumbbell fa-2x mb-2 text-success"></i>
+                    <h6>Gymnasium</h6>
+                    <p>Stay fit and healthy with modern workout equipment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-praying-hands fa-2x mb-2 text-warning"></i>
+                    <h6>Prayer Room</h6>
+                    <p>Dedicated space for students to perform daily prayers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-utensils fa-2x mb-2 text-danger"></i>
+                    <h6>Canteen</h6>
+                    <p>Enjoy meals and snacks at affordable prices.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-tv fa-2x mb-2 text-info"></i>
+                    <h6>TV Room</h6>
+                    <p>Relax and watch shows or news with friends.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-3 shadow-sm">
+                    <i class="fa-solid fa-chair fa-2x mb-2 text-secondary"></i>
+                    <h6>Waiting Room</h6>
+                    <p>Comfortable seating area for guests and visitors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="mb-5">
+        <h4 class="mb-3">Quick Actions</h4>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-primary w-100 p-3">
+                    <i class="fa-solid fa-calendar-days fa-lg mb-2"></i><br>
+                    View My Schedule
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-success w-100 p-3">
+                    <i class="fa-solid fa-envelope fa-lg mb-2"></i><br>
+                    Send Request
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-warning w-100 p-3">
+                    <i class="fa-solid fa-file-lines fa-lg mb-2"></i><br>
+                    View Notices
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="btn btn-outline-danger w-100 p-3">
+                    <i class="fa-solid fa-circle-info fa-lg mb-2"></i><br>
+                    Hall Info
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback / Suggestions -->
+    <div class="mb-5">
+        <h4 class="mb-3">Feedback / Suggestions</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <textarea class="form-control" rows="4" name="feedback" placeholder="Write your feedback or suggestion here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+### authority_dashboard.html
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Authority Dashboard - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Welcome, {{ request.user.username }}</h2>
+        <div class="d-flex align-items-center">
+            <img src="{% static 'img/23.jpg' %}" alt="Profile" class="rounded-circle" width="50" height="50">
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm ms-3">Logout</a>
+        </div>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-user-graduate fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Total Students</h5>
+                <p class="h4">{{ total_students }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-envelope-open-text fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Pending Applications</h5>
+                <p class="h4">{{ pending_applications }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-dumbbell fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Gym Usage</h5>
+                <p class="h4">{{ gym_count }}</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-book fa-2x mb-2" style="color: #210a61ff;"></i>
+                <h5>Library Users</h5>
+                <p class="h4">{{ library_count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Applications Table -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Pending Room Applications
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Hall</th>
+                        <th>Room Type</th>
+                        <th>Date Submitted</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in pending_apps %}
+                    <tr>
+                        <td>{{ app.student.username }}</td>
+                        <td>{{ app.hall_name }}</td>
+                        <td>{{ app.room_type }}</td>
+                        <td>{{ app.submission_date }}</td>
+                        <td>
+                            <a href="{% url 'approve_application' app.id %}" class="btn btn-success btn-sm">Approve</a>
+                            <a href="{% url 'reject_application' app.id %}" class="btn btn-danger btn-sm">Reject</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No pending applications</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Hall Activities -->
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            Hall Activity Logs
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Hall</th>
+                        <th>Activity</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in hall_logs %}
+                    <tr>
+                        <td>{{ log.student.username }}</td>
+                        <td>{{ log.hall_name }}</td>
+                        <td>{{ log.activity }}</td>
+                        <td>{{ log.timestamp }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No activity recorded</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

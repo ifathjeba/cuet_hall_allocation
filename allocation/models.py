@@ -17,29 +17,17 @@ class Hall(models.Model):
         return self.name
 
 
-class Application(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
-    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, default='pending')
-    applied_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.student.username} - {self.hall.name}"
-
-
 class RoomApplication(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
-
     # Personal info
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    university_id = models.CharField(max_length=50)  # renamed, do NOT use student_id
+    student_id = models.CharField(max_length=50)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     gender = models.CharField(max_length=20)
 
     # Academic info
-    faculty = models.CharField(max_length=200)
+    department = models.CharField(max_length=50)
     year = models.CharField(max_length=10)
     session = models.CharField(max_length=20)
 
@@ -58,4 +46,4 @@ class RoomApplication(models.Model):
     applied_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.student.username} - {self.hall}"
+        return f"{self.student_id} - {self.hall}"
