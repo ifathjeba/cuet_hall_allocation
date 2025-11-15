@@ -23,6 +23,25 @@ GENDER_CHOICES = [
     ('female', 'Female'),
     ('other', 'Other'),
 ]
+
+HALL_CHOICES = [
+    ('shamshen_naher', 'Shamshen Naher Hall'),
+    ('sufia_kamal', 'Sufia Kamal Hall'),
+    ('tapose_rabeya', 'Tapose Rabeya Hall'),
+]
+
+ROOM_TYPE_CHOICES = [
+    ('Standard Room (4 People)', 'Standard Room (4 People)'),
+    ('Gono Room (6 People)', 'Gono Room (6 People)'),
+]
+
+YEAR_CHOICES = [
+    ('1', '1st Year'),
+    ('2', '2nd Year'),
+    ('3', '3rd Year'),
+    ('4', '4th Year'),
+    ('5', '5th Year'),
+]
 class RoomApplication(models.Model):
     # Personal info
     first_name = models.CharField(max_length=100)
@@ -34,12 +53,13 @@ class RoomApplication(models.Model):
 
     # Academic info
     department = models.CharField(max_length=50)
-    year = models.CharField(max_length=10)
+    year = models.CharField(max_length=1, choices=YEAR_CHOICES)
     session = models.CharField(max_length=20)
 
     # Room preferences
-    hall = models.CharField(max_length=100)
-    room_type = models.CharField(max_length=100)
+    hall = models.CharField(max_length=50, choices=HALL_CHOICES)
+    room_type = models.CharField(max_length=50, choices=ROOM_TYPE_CHOICES)
+    room_number = models.CharField(max_length=10, blank=True, null=True)
     special_requests = models.TextField(blank=True, null=True)
 
     # Guardian info

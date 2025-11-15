@@ -23,5 +23,9 @@ class RoomApplicationForm(forms.ModelForm):
         exclude = ['status', 'applied_at']
         widgets = {
             'gender': forms.Select(attrs={'class': 'form-control'}),
+            'year': forms.Select(attrs={'class': 'form-control'}),
+            'hall': forms.Select(attrs={'class': 'form-control'}),
+            'room_type': forms.Select(attrs={'class': 'form-control'}),
+            'room_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your room number'}),
         }
 
