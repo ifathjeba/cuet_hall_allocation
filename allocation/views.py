@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Profile, RoomApplication, Hall
-from .forms import SignUpForm, RoomApplicationForm
+from django.http import JsonResponse
+from .models import Profile, RoomApplication, Hall,ROOM_TYPE_CHOICES
+from .forms import SignUpForm, RoomApplicationForm,ProfileUpdateForm
 from django.contrib.auth.models import User
+
 
 # Home Page
 def home(request):
@@ -71,6 +73,7 @@ def contact_us(request):
 
 
 # Room application without login
+@login_required
 def student_apply_room(request):
     if request.method == 'POST':
         form = RoomApplicationForm(request.POST)
@@ -90,7 +93,6 @@ def student_apply_room(request):
     else:
         form = RoomApplicationForm()
     return render(request, 'allocation/apply_room.html', {'form': form})
-
 
 @login_required
 def authority_dashboard(request):
@@ -129,3 +131,47 @@ def reject_application(request, app_id):
     app.save()
     messages.success(request, f"{app.student_id}'s application rejected.")
     return redirect('authority_dashboard')
+
+
+
+
+@login_required
+def profile_update(request):
+    profile = request.user.profile
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully!")
+            return redirect('student_dashboard')
+    else:
+        form = ProfileUpdateForm(instance=profile)
+    return render(request, 'allocation/profile_update.html', {'form': form})
+
+
+
+
+TOTAL_FLOORS = 5
+ROOMS_PER_FLOOR = 24
+SPECIAL_ROOMS = [0, 25]  # Example: room numbers reserved for guest, prayer, office, etc.
+
+def available_rooms(request):
+    room_type = request.GET.get('room_type', 'Standard Room (4 People)')
+    
+    # Generate all possible rooms
+    all_rooms = []
+    for floor in range(1, TOTAL_FLOORS + 1):
+        for num in range(1, ROOMS_PER_FLOOR + 1):
+            if num not in SPECIAL_ROOMS:
+                all_rooms.append(f"{floor}{num:02d}")  # e.g., 101, 102, 510
+
+    # Get already allocated rooms for this type
+    occupied_rooms = RoomApplication.objects.filter(
+        room_type=room_type,
+        status='approved'
+    ).values_list('room_number', flat=True)
+
+    # Filter available rooms
+    available_rooms = [r for r in all_rooms if r not in occupied_rooms]
+
+    return JsonResponse({'available_rooms': available_rooms})

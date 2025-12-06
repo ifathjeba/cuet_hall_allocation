@@ -1,0 +1,41 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "NestMate CUET" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Apply for Room" [ref=e10] [cursor=pointer]:
+            - /url: /student/apply-room/
+        - listitem [ref=e11]:
+          - link "About Us" [ref=e12] [cursor=pointer]:
+            - /url: /about/
+        - listitem [ref=e13]:
+          - link "Contact" [ref=e14] [cursor=pointer]:
+            - /url: /contact/
+        - listitem [ref=e15]:
+          - link "Login" [ref=e16] [cursor=pointer]:
+            - /url: /login/
+        - listitem [ref=e17]:
+          - link "Sign Up" [ref=e18] [cursor=pointer]:
+            - /url: /signup/
+  - main [ref=e19]:
+    - generic [ref=e21]:
+      - heading "Login" [level=3] [ref=e22]
+      - generic [ref=e23]: Invalid username or password
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: Username
+          - textbox [ref=e27]
+        - generic [ref=e28]:
+          - generic [ref=e29]: Password
+          - textbox [ref=e30]
+        - button "Login" [ref=e32] [cursor=pointer]
+  - contentinfo [ref=e33]: © 2025 NestMate CUET. All rights reserved.
+```

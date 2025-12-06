@@ -9,11 +9,17 @@ urlpatterns = [
     path('about/', views.about_us, name='about'),
     path('contact/', views.contact_us, name='contact'),
 
-    path('student/dashboard/', views.student_dashboard, name='student_dashboard'),
-    path('authority/dashboard/', views.authority_dashboard, name='authority_dashboard'),
+    path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
+    path('authority_dashboard/', views.authority_dashboard, name='authority_dashboard'),
 
     path('application/approve/<int:app_id>/', views.approve_application, name='approve_application'),
     path('application/reject/<int:app_id>/', views.reject_application, name='reject_application'),
 
     path('student/apply-room/', views.student_apply_room, name='student_apply_room'),
+
+    # allocation/urls.py
+    path('student/profile/', views.profile_update, name='profile_update'),
+
+    path('available-rooms/', views.available_rooms, name='available_rooms'),
+
 ]

@@ -1,0 +1,58 @@
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Update Profile - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; border-radius: 15px;">
+        <h2 class="text-center mb-4">Update Profile</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'profile_update' %}">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                {{ form.student_id.label_tag }}
+                {{ form.student_id }}
+                {% for err in form.student_id.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+                {% for err in form.phone.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.gender.label_tag }}
+                {{ form.gender }}
+                {% for err in form.gender.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.department.label_tag }}
+                {{ form.department }}
+                {% for err in form.department.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.year.label_tag }}
+                {{ form.year }}
+                {% for err in form.year.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+            </div>
+            <div class="mb-3">
+                {{ form.session.label_tag }}
+                {{ form.session }}
+                {% for err in form.session.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn" style="background-color:#210a61;color:#fff;">Update Profile</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

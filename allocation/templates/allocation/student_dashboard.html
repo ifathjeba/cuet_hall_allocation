@@ -6,14 +6,15 @@
 {% block content %}
 <div class="container py-5">
 
+
     <!-- Welcome Section -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Welcome, {{ request.user.username }}</h2>
-        <div class="d-flex align-items-center">
-            <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle me-2" width="50" height="50">
-            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
-        </div>
-    </div>
+<div class="d-flex align-items-center justify-content-end">
+    <a href="{% url 'profile_update' %}">
+        <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle ms-2" width="50" height="50">
+    </a>
+</div>
+
+
 
     <!-- Current Hall Allocation (Static for Presentation) -->
 <div class="mb-4">
@@ -27,7 +28,71 @@
 </div>
 
 
-   
+   <!-- Add this above your room applications section -->
+<div class="mb-3">
+    <button class="btn btn-info btn-sm" id="checkRoomsBtn">
+        <i class="bi bi-info-circle"></i> Check Available Rooms
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="availableRoomsModal" tabindex="-1" aria-labelledby="availableRoomsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="availableRoomsModalLabel">Available Rooms</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul id="availableRoomsList" class="list-group">
+            <!-- Available rooms will be populated here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hall Facilities Section -->
+    <div class="mb-5">
+        <h4 class="mb-3">Hall Facilities</h4>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/30.jpg' %}" class="card-img-top rounded mb-2" alt="Library">
+                    <h6>Library</h6>
+                    <p class="text-muted small">A well-equipped library with books and study space.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/31.jpg' %}" class="card-img-top rounded mb-2" alt="Prayer Room">
+                    <h6>Prayer Room</h6>
+                    <p class="text-muted small">Separate spaces for students to pray comfortably.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/29.jpg' %}" class="card-img-top rounded mb-2" alt="Gymnasium">
+                    <h6>Gymnasium</h6>
+                    <p class="text-muted small">Well-maintained gym for health and fitness activities.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/27.jpg' %}" class="card-img-top rounded mb-2" alt="Waiting Room">
+                    <h6>Waiting Room</h6>
+                    <p class="text-muted small">Comfortable waiting area for guests and visitors.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/28.jpg' %}" class="card-img-top rounded mb-2" alt="TV Room">
+                    <h6>TV Room</h6>
+                    <p class="text-muted small">Relaxing space with entertainment facilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Student Applications -->
     <div class="mb-5">
@@ -77,47 +142,7 @@
         {% endif %}
     </div>
 
-    <!-- Hall Facilities Section -->
-    <div class="mb-5">
-        <h4 class="mb-3">Hall Facilities</h4>
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/30.jpg' %}" class="card-img-top rounded mb-2" alt="Library">
-                    <h6>Library</h6>
-                    <p class="text-muted small">A well-equipped library with books and study space.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/31.jpg' %}" class="card-img-top rounded mb-2" alt="Prayer Room">
-                    <h6>Prayer Room</h6>
-                    <p class="text-muted small">Separate spaces for students to pray comfortably.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/29.jpg' %}" class="card-img-top rounded mb-2" alt="Gymnasium">
-                    <h6>Gymnasium</h6>
-                    <p class="text-muted small">Well-maintained gym for health and fitness activities.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/27.jpg' %}" class="card-img-top rounded mb-2" alt="Waiting Room">
-                    <h6>Waiting Room</h6>
-                    <p class="text-muted small">Comfortable waiting area for guests and visitors.</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/28.jpg' %}" class="card-img-top rounded mb-2" alt="TV Room">
-                    <h6>TV Room</h6>
-                    <p class="text-muted small">Relaxing space with entertainment facilities.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 </div>
 
@@ -131,5 +156,33 @@
     object-fit: cover;
 }
 </style>
+
+
+<script>
+document.getElementById('checkRoomsBtn').addEventListener('click', function() {
+    fetch("{% url 'available_rooms' %}")
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById('availableRoomsList');
+            list.innerHTML = ''; // Clear previous
+
+            if(data.available_rooms.length === 0){
+                list.innerHTML = '<li class="list-group-item">No rooms available right now.</li>';
+            } else {
+                data.available_rooms.forEach(room => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = 'Room ' + room;
+                    list.appendChild(li);
+                });
+            }
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('availableRoomsModal'));
+            modal.show();
+        });
+});
+</script>
+
 
 {% endblock %}

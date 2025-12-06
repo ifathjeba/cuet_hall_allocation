@@ -1,0 +1,58 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "NestMate CUET" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e9]:
+          - link "Apply for Room" [ref=e10] [cursor=pointer]:
+            - /url: /student/apply-room/
+        - listitem [ref=e11]:
+          - link "About Us" [ref=e12] [cursor=pointer]:
+            - /url: /about/
+        - listitem [ref=e13]:
+          - link "Contact" [ref=e14] [cursor=pointer]:
+            - /url: /contact/
+        - listitem [ref=e15]:
+          - link "Login" [ref=e16] [cursor=pointer]:
+            - /url: /login/
+        - listitem [ref=e17]:
+          - link "Sign Up" [ref=e18] [cursor=pointer]:
+            - /url: /signup/
+  - main [ref=e19]:
+    - generic [ref=e21]:
+      - heading "Sign Up" [level=2] [ref=e22]
+      - generic [ref=e23]: Please correct the errors below.
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: "Username:"
+            - textbox "Username:" [active] [ref=e28]: student6116
+          - generic [ref=e29]:
+            - generic [ref=e30]: "Email:"
+            - textbox "Email:" [ref=e31]: student6116@example.com
+          - generic [ref=e32]:
+            - generic [ref=e33]: "Password:"
+            - textbox "Password:" [ref=e34]
+          - generic [ref=e35]:
+            - generic [ref=e36]: "Password confirmation:"
+            - textbox "Password confirmation:" [ref=e37]
+            - generic [ref=e38]: The password is too similar to the username.
+          - generic [ref=e39]:
+            - generic [ref=e40]: "User type:"
+            - combobox "User type:" [ref=e41]:
+              - option "Student" [selected]
+              - option "Hall Authority"
+        - button "Sign Up" [ref=e43] [cursor=pointer]
+        - paragraph [ref=e44]:
+          - text: Already have an account?
+          - link "Login" [ref=e45] [cursor=pointer]:
+            - /url: /login/
+  - contentinfo [ref=e46]: © 2025 NestMate CUET. All rights reserved.
+```
