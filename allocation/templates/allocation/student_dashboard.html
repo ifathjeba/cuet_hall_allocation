@@ -6,97 +6,97 @@
 {% block content %}
 <div class="container py-5">
 
+    <!-- Profile Icon Right Side -->
+    <div class="d-flex align-items-center justify-content-end mb-3">
+        <a href="{% url 'profile_update' %}">
+            <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle ms-2" width="50" height="50">
+        </a>
+    </div>
 
-    <!-- Welcome Section -->
-<div class="d-flex align-items-center justify-content-end">
-    <a href="{% url 'profile_update' %}">
-        <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle ms-2" width="50" height="50">
-    </a>
-</div>
-
-
-
-    <!-- Current Hall Allocation (Static for Presentation) -->
-<div class="mb-4">
-    <div class="alert alert-info shadow-sm d-flex align-items-center">
-        <img src="{% static 'img/19.jpg' %}" alt="Hall Image" class="rounded me-3" width="60" height="60">
-        <div>
-            <strong>Your current hall:</strong> Tapose Rabeya Hall<br>
-            <small class="text-muted">You can still apply for a different room if needed.</small>
+    <!-- Current Hall Alert -->
+    <div class="mb-4">
+        <div class="alert alert-info shadow-sm d-flex align-items-center">
+            <img src="{% static 'img/19.jpg' %}" alt="Hall Image" class="rounded me-3" width="60" height="60">
+            <div>
+                <strong>Your current hall:</strong> Tapose Rabeya Hall<br>
+                <small class="text-muted">You can still apply for a different room if needed.</small>
+            </div>
         </div>
     </div>
-</div>
 
+    <!-- Check Room Button -->
+    <div class="mb-3">
+        <button class="btn btn-info btn-sm" id="checkRoomsBtn">
+            <i class="bi bi-info-circle"></i> Check Available Rooms
+        </button>
+    </div>
 
-   <!-- Add this above your room applications section -->
-<div class="mb-3">
-    <button class="btn btn-info btn-sm" id="checkRoomsBtn">
-        <i class="bi bi-info-circle"></i> Check Available Rooms
-    </button>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="availableRoomsModal" tabindex="-1" aria-labelledby="availableRoomsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="availableRoomsModalLabel">Available Rooms</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <ul id="availableRoomsList" class="list-group">
-            <!-- Available rooms will be populated here -->
-        </ul>
+    <!-- Modal for Available Rooms -->
+    <div class="modal fade" id="availableRoomsModal" tabindex="-1" aria-labelledby="availableRoomsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="availableRoomsModalLabel">Available Rooms</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul id="availableRoomsList" class="list-group"></ul>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Hall Facilities Section -->
+    <!-- Hall Facilities -->
     <div class="mb-5">
         <h4 class="mb-3">Hall Facilities</h4>
         <div class="row g-4">
+
             <div class="col-md-3">
                 <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/30.jpg' %}" class="card-img-top rounded mb-2" alt="Library">
+                    <img src="{% static 'img/30.jpg' %}" class="card-img-top rounded mb-2">
                     <h6>Library</h6>
                     <p class="text-muted small">A well-equipped library with books and study space.</p>
                 </div>
             </div>
+
             <div class="col-md-3">
                 <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/31.jpg' %}" class="card-img-top rounded mb-2" alt="Prayer Room">
+                    <img src="{% static 'img/31.jpg' %}" class="card-img-top rounded mb-2">
                     <h6>Prayer Room</h6>
                     <p class="text-muted small">Separate spaces for students to pray comfortably.</p>
                 </div>
             </div>
+
             <div class="col-md-3">
                 <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/29.jpg' %}" class="card-img-top rounded mb-2" alt="Gymnasium">
+                    <img src="{% static 'img/29.jpg' %}" class="card-img-top rounded mb-2">
                     <h6>Gymnasium</h6>
-                    <p class="text-muted small">Well-maintained gym for health and fitness activities.</p>
+                    <p class="text-muted small">Well-maintained gym for health and fitness.</p>
                 </div>
             </div>
+
             <div class="col-md-3">
                 <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/27.jpg' %}" class="card-img-top rounded mb-2" alt="Waiting Room">
+                    <img src="{% static 'img/27.jpg' %}" class="card-img-top rounded mb-2">
                     <h6>Waiting Room</h6>
                     <p class="text-muted small">Comfortable waiting area for guests and visitors.</p>
                 </div>
             </div>
+
             <div class="col-md-3">
                 <div class="card text-center shadow-sm p-3 hover-shadow">
-                    <img src="{% static 'img/28.jpg' %}" class="card-img-top rounded mb-2" alt="TV Room">
+                    <img src="{% static 'img/28.jpg' %}" class="card-img-top rounded mb-2">
                     <h6>TV Room</h6>
                     <p class="text-muted small">Relaxing space with entertainment facilities.</p>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- Student Applications -->
+    <!-- Application Cards -->
     <div class="mb-5">
-        <h4 class="mb-3">Your Hall Room Applications</h4>
+        <h4 class="mb-3">Your Hall Room Applications (Card View)</h4>
         {% if room_applications %}
             <div class="row g-3">
                 {% for app in room_applications %}
@@ -119,13 +119,10 @@
                                 <strong>Status:</strong>
                                 {% if app.status == 'pending' %}
                                     <span class="badge bg-warning text-dark">Pending</span>
-                                    <small class="text-muted d-block">Your application is being reviewed.</small>
                                 {% elif app.status == 'approved' %}
                                     <span class="badge bg-success">Approved</span>
-                                    <small class="text-muted d-block">Congratulations! Your room is allocated.</small>
                                 {% else %}
                                     <span class="badge bg-danger">Rejected</span>
-                                    <small class="text-muted d-block">Reason: {{ app.rejection_reason|default:"Please contact the authority for details." }}</small>
                                 {% endif %}
                             </p>
                             <p><strong>Applied At:</strong> {{ app.applied_at|date:"d M Y H:i" }}</p>
@@ -142,7 +139,51 @@
         {% endif %}
     </div>
 
-    
+    <!-- Table View -->
+    <div class="mb-5">
+        <h4 class="mb-3 text-center">Room Application Details (Table View)</h4>
+
+        {% if applications %}
+        <table class="table table-hover align-middle shadow-sm">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Year</th>
+                    <th>CGPA</th>
+                    <th>Room Type</th>
+                    <th>Room Number</th>
+                    <th>Special Request</th>
+                    <th>Status</th>
+                    <th>Applied At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in applications %}
+                <tr>
+                    <td>{{ app.email }}</td>
+                    <td>{{ app.year }}</td>
+                    <td>{{ app.cgpa }}</td>
+                    <td>{{ app.room_type }}</td>
+                    <td>{{ app.room_number }}</td>
+                    <td>{{ app.special_request }}</td>
+                    <td>
+                        {% if app.status == 'pending' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif app.status == 'approved' %}
+                            <span class="badge bg-success">Approved</span>
+                        {% else %}
+                            <span class="badge bg-danger">Rejected</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ app.applied_at|date:"d M Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p class="text-center">No room application data available.</p>
+        {% endif %}
+    </div>
 
 </div>
 
@@ -157,14 +198,13 @@
 }
 </style>
 
-
 <script>
 document.getElementById('checkRoomsBtn').addEventListener('click', function() {
     fetch("{% url 'available_rooms' %}")
         .then(response => response.json())
         .then(data => {
             const list = document.getElementById('availableRoomsList');
-            list.innerHTML = ''; // Clear previous
+            list.innerHTML = '';
 
             if(data.available_rooms.length === 0){
                 list.innerHTML = '<li class="list-group-item">No rooms available right now.</li>';
@@ -177,12 +217,10 @@ document.getElementById('checkRoomsBtn').addEventListener('click', function() {
                 });
             }
 
-            // Show modal
             const modal = new bootstrap.Modal(document.getElementById('availableRoomsModal'));
             modal.show();
         });
 });
 </script>
-
 
 {% endblock %}

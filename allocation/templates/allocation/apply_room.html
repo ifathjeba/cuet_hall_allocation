@@ -11,31 +11,9 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
 
-        <!-- Personal Information -->
-        <div class="card mb-4 p-4">
-            <h4 class="mb-3">Personal Information</h4>
+        <div class="card p-4 mb-4">
+            <h4 class="mb-3">Application Details</h4>
             <div class="row g-3">
-                <div class="col-md-6">
-                    {{ form.first_name.label_tag }}
-                    {{ form.first_name }}
-                    {% if form.first_name.errors %}
-                        <div class="text-danger small">{{ form.first_name.errors }}</div>
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    {{ form.last_name.label_tag }}
-                    {{ form.last_name }}
-                    {% if form.last_name.errors %}
-                        <div class="text-danger small">{{ form.last_name.errors }}</div>
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    {{ form.student_id.label_tag }}
-                    {{ form.student_id }}
-                    {% if form.student_id.errors %}
-                        <div class="text-danger small">{{ form.student_id.errors }}</div>
-                    {% endif %}
-                </div>
                 <div class="col-md-6">
                     {{ form.email.label_tag }}
                     {{ form.email }}
@@ -43,125 +21,55 @@
                         <div class="text-danger small">{{ form.email.errors }}</div>
                     {% endif %}
                 </div>
-                <div class="col-md-6">
-                    {{ form.phone.label_tag }}
-                    {{ form.phone }}
-                    {% if form.phone.errors %}
-                        <div class="text-danger small">{{ form.phone.errors }}</div>
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    {{ form.gender.label_tag }}
-                    {{ form.gender }}
-                    {% if form.gender.errors %}
-                        <div class="text-danger small">{{ form.gender.errors }}</div>
-                        
-                    {% endif %}
-                </div>
-            </div>
-        </div>
 
-        <!-- Academic Information -->
-        <div class="card mb-4 p-4">
-            <h4 class="mb-3">Academic Information</h4>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    {{ form.department.label_tag }}
-                    {{ form.department }}
-                    {% if form.department.errors %}
-                        <div class="text-danger small">{{ form.department.errors }}</div>
-                    {% endif %}
-                </div>
                 <div class="col-md-6">
                     {{ form.year.label_tag }}
                     {{ form.year }}
                     {% if form.year.errors %}
-                    <div class="text-danger small">{{ form.year.errors }}</div>
+                        <div class="text-danger small">{{ form.year.errors }}</div>
                     {% endif %}
                 </div>
 
                 <div class="col-md-6">
-                    {{ form.session.label_tag }}
-                    {{ form.session }}
-                    {% if form.session.errors %}
-                        <div class="text-danger small">{{ form.session.errors }}</div>
+                    {{ form.cgpa.label_tag }}
+                    {{ form.cgpa }}
+                    {% if form.cgpa.errors %}
+                        <div class="text-danger small">{{ form.cgpa.errors }}</div>
                     {% endif %}
                 </div>
-            </div>
-        </div>
 
-        <!-- Room Preferences -->
-        <div class="card mb-4 p-4">
-            <h4 class="mb-3">Room Preferences</h4>
-            <div class="row g-3">   
-                <div class="col-md-6">
-                    {{ form.hall.label_tag }}
-                    {{ form.hall }}
-                    {% if form.hall.errors %}
-                    <div class="text-danger small">{{ form.hall.errors }}</div>
-                    {% endif %}
-                </div>
                 <div class="col-md-6">
                     {{ form.room_type.label_tag }}
                     {{ form.room_type }}
                     {% if form.room_type.errors %}
-                    <div class="text-danger small">{{ form.room_type.errors }}</div>
+                        <div class="text-danger small">{{ form.room_type.errors }}</div>
                     {% endif %}
                 </div>
-                <div class="col-md-6 mt-3">
+
+                <div class="col-md-6">
                     {{ form.room_number.label_tag }}
                     {{ form.room_number }}
                     {% if form.room_number.errors %}
-                    <div class="text-danger small">{{ form.room_number.errors }}</div>
+                        <div class="text-danger small">{{ form.room_number.errors }}</div>
                     {% endif %}
                 </div>
 
                 <div class="col-md-12">
-                    {{ form.special_requests.label_tag }}
-                    {{ form.special_requests }}
-                    {% if form.special_requests.errors %}
-                        <div class="text-danger small">{{ form.special_requests.errors }}</div>
+                    {{ form.special_request.label_tag }}
+                    {{ form.special_request }}
+                    {% if form.special_request.errors %}
+                        <div class="text-danger small">{{ form.special_request.errors }}</div>
                     {% endif %}
                 </div>
             </div>
         </div>
 
-        <!-- Guardian Information -->
-        <div class="card mb-4 p-4">
-            <h4 class="mb-3">Guardian / Emergency Contact</h4>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    {{ form.guardian_name.label_tag }}
-                    {{ form.guardian_name }}
-                    {% if form.guardian_name.errors %}
-                        <div class="text-danger small">{{ form.guardian_name.errors }}</div>
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    {{ form.guardian_phone.label_tag }}
-                    {{ form.guardian_phone }}
-                    {% if form.guardian_phone.errors %}
-                        <div class="text-danger small">{{ form.guardian_phone.errors }}</div>
-                    {% endif %}
-                </div>
-                <div class="col-md-12">
-                    {{ form.guardian_email.label_tag }}
-                    {{ form.guardian_email }}
-                    {% if form.guardian_email.errors %}
-                        <div class="text-danger small">{{ form.guardian_email.errors }}</div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit Button -->
         <div class="text-center mb-5">
-            <button type="submit" class="btn btn-custom btn-lg">Submit Application</button>
+            <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
         </div>
     </form>
 </div>
 {% endblock %}
-
 
 
 

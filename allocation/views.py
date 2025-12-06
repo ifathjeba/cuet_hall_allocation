@@ -6,6 +6,8 @@ from django.http import JsonResponse
 from .models import Profile, RoomApplication, Hall,ROOM_TYPE_CHOICES
 from .forms import SignUpForm, RoomApplicationForm,ProfileUpdateForm
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 
 # Home Page
@@ -73,65 +75,75 @@ def contact_us(request):
 
 
 # Room application without login
+# Apply room
 @login_required
 def student_apply_room(request):
     if request.method == 'POST':
         form = RoomApplicationForm(request.POST)
         if form.is_valid():
-            # Check duplicate by student_id
-            student_id = form.cleaned_data['student_id']
-            existing_app = RoomApplication.objects.filter(student_id=student_id).exclude(status='rejected').first()
-            if existing_app:
-                messages.error(request, "You already applied!")
-                return redirect('student_apply_room')
-            
             form.save()
-            messages.success(request, "Your application submitted!")
-            return redirect('student_apply_room')
-        else:
-            messages.error(request, "Please fill all required fields correctly.")
+            messages.success(request, "Your application has been submitted and sent to authority!")
+            return redirect('student_dashboard')
     else:
         form = RoomApplicationForm()
     return render(request, 'allocation/apply_room.html', {'form': form})
 
 @login_required
-def authority_dashboard(request):
-    if request.user.profile.user_type != 'authority':
-        messages.error(request, 'Not authorized.')
-        return redirect('home')
-
-    applications = RoomApplication.objects.order_by('-applied_at')
-    return render(request, 'allocation/authority_dashboard.html', {'applications': applications})
-
-
-@login_required
 def student_dashboard(request):
-    if request.user.profile.user_type != 'student':
-        messages.error(request, 'Not authorized.')
-        return redirect('home')
-
-    # Show all applications by this student's student_id (matched by email or username)
     applications = RoomApplication.objects.filter(email=request.user.email).order_by('-applied_at')
     return render(request, 'allocation/student_dashboard.html', {'applications': applications})
 
+# Authority Dashboard
+@login_required
+def authority_dashboard(request):
+    applications = RoomApplication.objects.filter(status='pending').order_by('applied_at')
+    return render(request, 'allocation/authority_dashboard.html', {'applications': applications})
 
+
+
+# Approve application (allocation logic)
 @login_required
 def approve_application(request, app_id):
     app = get_object_or_404(RoomApplication, id=app_id)
+    # Check if room already allocated
+    same_room_apps = RoomApplication.objects.filter(room_number=app.room_number, status='approved')
+    
+    if same_room_apps.exists():
+        # Resolve conflict: prioritize higher year -> higher CGPA
+        candidate = app
+        for existing in same_room_apps:
+            if int(candidate.year) > int(existing.year):
+                continue  # candidate is higher year, ok
+            elif int(candidate.year) == int(existing.year):
+                if candidate.cgpa > existing.cgpa:
+                    # swap allocation
+                    existing.status = 'rejected'
+                    existing.save()
+                else:
+                    candidate.status = 'rejected'
+                    candidate.save()
+                    messages.warning(request, f"{candidate.email} rejected due to lower CGPA for room {app.room_number}")
+                    return redirect('authority_dashboard')
+            else:
+                candidate.status = 'rejected'
+                candidate.save()
+                messages.warning(request, f"{candidate.email} rejected due to lower year for room {app.room_number}")
+                return redirect('authority_dashboard')
+
     app.status = 'approved'
+    app.allocated_at = timezone.now()
     app.save()
-    messages.success(request, f"{app.student_id}'s application approved.")
+    messages.success(request, f"{app.email} approved and allocated room {app.room_number}")
     return redirect('authority_dashboard')
 
-
+# Reject application
 @login_required
 def reject_application(request, app_id):
     app = get_object_or_404(RoomApplication, id=app_id)
     app.status = 'rejected'
     app.save()
-    messages.success(request, f"{app.student_id}'s application rejected.")
+    messages.success(request, f"{app.email} application rejected")
     return redirect('authority_dashboard')
-
 
 
 

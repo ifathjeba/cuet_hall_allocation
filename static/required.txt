@@ -462,3 +462,385 @@
 </div>
 {% endblock %}
 
+
+
+
+### Authority_dashboard
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Authority Dashboard - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Welcome, Authority</h2>
+        <div class="d-flex align-items-center">
+            <img src="{% static 'img/23.jpg' %}" alt="Profile" class="rounded-circle me-2" width="50" height="50">
+            <a href="#" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+    </div>
+
+    <!-- Dashboard Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-user-graduate fa-2x mb-2 text-primary"></i>
+                <h5>Total Students</h5>
+                <p class="h4">1200</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-envelope-open-text fa-2x mb-2 text-warning"></i>
+                <h5>Pending Applications</h5>
+                <p class="h4">35</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-check fa-2x mb-2 text-success"></i>
+                <h5>Approved</h5>
+                <p class="h4">1100</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center shadow-sm p-3">
+                <i class="fa-solid fa-xmark fa-2x mb-2 text-danger"></i>
+                <h5>Rejected</h5>
+                <p class="h4">65</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+     <!-- Recent Student Activities -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            Recent Student Activities
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Action</th>
+                        <th>Hall</th>
+                        <th>Date/Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="{% static 'img/25.jpg' %}" width="30" class="rounded-circle me-1"> Ayesha Samin</td>
+                        <td>Applied for Standard Room(4 People)</td>
+                        <td>Shamshen Nahar Hall</td>
+                        <td>12 Nov 2025 14:30</td>
+                    </tr>
+
+                    <tr>
+                        <td><img src="{% static 'img/23.jpg' %}" width="30" class="rounded-circle me-1"> Maimuna Tabassum</td>
+                        <td>Application Approved</td>
+                        <td>Shamshen Nahar Hall</td>
+                        <td>14 Nov 2025 16:45</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><img src="{% static 'img/8.jpg' %}" width="30" class="rounded-circle me-1"> Abunti Barua</td>
+                        <td>Applied for Standard Room(4 People)</td>
+                        <td>Shamshen Nahar Hall</td>
+                        <td>13 Nov 2025 09:20</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+     <!-- Hall Occupancy Overview -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm p-3 text-center">
+                <img src="{% static 'img/20.jpg' %}" alt="Hall A" class="img-fluid mb-2 rounded">
+                <h6>Shamshen Nahar Hall</h6>
+                <p>620 / 650 Students</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm p-3 text-center">
+                <img src="{% static 'img/19.jpg' %}" alt="Hall B" class="img-fluid mb-2 rounded">
+                <h6>Tapashi Rabeya Hall</h6>
+                <p>310 / 380 Students</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card shadow-sm p-3 text-center">
+                <img src="{% static 'img/26.jpg' %}" alt="Hall C" class="img-fluid mb-2 rounded">
+                <h6>Sufia Kamal Hall</h6>
+                <p> 270/ 300 Students</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Pending Applications Table -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Pending Room Applications
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Student ID</th>
+                        <th>Hall</th>
+                        <th>Room Type</th>
+                        <th>Status</th>
+                        <th>Applied At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sanzana Saif Era</td>
+                        <td>2104116</td>
+                        <td>Tapashi Rabeya Hall</td>
+                        <td>Standard Room (4 People)</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <td>12 Nov 2025 14:30</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ariana Rutba</td>
+                        <td>2104115</td>
+                        <td>Tapashi Rabeya Hall</td>
+                        <td>Standard Room (4 People)</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <td>13 Nov 2025 09:20</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aynany Tazrian</td>
+                        <td>2103112</td>
+                        <td>Shamshen Naher Hall</td>
+                        <td>Standard Room (4 People)</td>
+                        <td><span class="badge bg-warning text-dark">Pending</span></td>
+                        <td>14 Nov 2025 16:45</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Approve</button>
+                            <button class="btn btn-danger btn-sm">Reject</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+   
+   
+</div>
+{% endblock %}
+
+
+
+###STUDENT Dashboard
+{% extends 'allocation/base.html' %}
+{% load static %}
+
+{% block title %}Student Dashboard - NestMate CUET{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+
+    <!-- Welcome Section -->
+<div class="d-flex align-items-center justify-content-end">
+    <a href="{% url 'profile_update' %}">
+        <img src="{% static 'img/8.jpg' %}" alt="Profile" class="rounded-circle ms-2" width="50" height="50">
+    </a>
+</div>
+
+
+
+    <!-- Current Hall Allocation (Static for Presentation) -->
+<div class="mb-4">
+    <div class="alert alert-info shadow-sm d-flex align-items-center">
+        <img src="{% static 'img/19.jpg' %}" alt="Hall Image" class="rounded me-3" width="60" height="60">
+        <div>
+            <strong>Your current hall:</strong> Tapose Rabeya Hall<br>
+            <small class="text-muted">You can still apply for a different room if needed.</small>
+        </div>
+    </div>
+</div>
+
+
+   <!-- Add this above your room applications section -->
+<div class="mb-3">
+    <button class="btn btn-info btn-sm" id="checkRoomsBtn">
+        <i class="bi bi-info-circle"></i> Check Available Rooms
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="availableRoomsModal" tabindex="-1" aria-labelledby="availableRoomsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="availableRoomsModalLabel">Available Rooms</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul id="availableRoomsList" class="list-group">
+            <!-- Available rooms will be populated here -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hall Facilities Section -->
+    <div class="mb-5">
+        <h4 class="mb-3">Hall Facilities</h4>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/30.jpg' %}" class="card-img-top rounded mb-2" alt="Library">
+                    <h6>Library</h6>
+                    <p class="text-muted small">A well-equipped library with books and study space.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/31.jpg' %}" class="card-img-top rounded mb-2" alt="Prayer Room">
+                    <h6>Prayer Room</h6>
+                    <p class="text-muted small">Separate spaces for students to pray comfortably.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/29.jpg' %}" class="card-img-top rounded mb-2" alt="Gymnasium">
+                    <h6>Gymnasium</h6>
+                    <p class="text-muted small">Well-maintained gym for health and fitness activities.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/27.jpg' %}" class="card-img-top rounded mb-2" alt="Waiting Room">
+                    <h6>Waiting Room</h6>
+                    <p class="text-muted small">Comfortable waiting area for guests and visitors.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center shadow-sm p-3 hover-shadow">
+                    <img src="{% static 'img/28.jpg' %}" class="card-img-top rounded mb-2" alt="TV Room">
+                    <h6>TV Room</h6>
+                    <p class="text-muted small">Relaxing space with entertainment facilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Applications -->
+    <div class="mb-5">
+        <h4 class="mb-3">Your Hall Room Applications</h4>
+        {% if room_applications %}
+            <div class="row g-3">
+                {% for app in room_applications %}
+                    <div class="col-md-6">
+                        <div class="card shadow-sm p-3 hover-shadow">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="{% static 'img/hall_a.jpg' %}" alt="Hall Image" class="rounded me-3" width="80" height="80">
+                                <div>
+                                    <h5 class="mb-1">{{ app.first_name }} {{ app.last_name }}</h5>
+                                    <p class="mb-0"><strong>ID:</strong> {{ app.student_id }}</p>
+                                </div>
+                            </div>
+                            <p><strong>Email:</strong> {{ app.email }}</p>
+                            <p><strong>Phone:</strong> {{ app.phone }}</p>
+                            <p>
+                                <strong>Hall:</strong> {{ app.hall }} <br>
+                                <strong>Room Type:</strong> {{ app.room_type }}
+                            </p>
+                            <p>
+                                <strong>Status:</strong>
+                                {% if app.status == 'pending' %}
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                    <small class="text-muted d-block">Your application is being reviewed.</small>
+                                {% elif app.status == 'approved' %}
+                                    <span class="badge bg-success">Approved</span>
+                                    <small class="text-muted d-block">Congratulations! Your room is allocated.</small>
+                                {% else %}
+                                    <span class="badge bg-danger">Rejected</span>
+                                    <small class="text-muted d-block">Reason: {{ app.rejection_reason|default:"Please contact the authority for details." }}</small>
+                                {% endif %}
+                            </p>
+                            <p><strong>Applied At:</strong> {{ app.applied_at|date:"d M Y H:i" }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center p-5 bg-light rounded shadow-sm">
+                <img src="{% static 'img/no_application.png' %}" class="mb-3" width="120" alt="No Application">
+                <p class="mb-0">You have not submitted any applications yet.</p>
+                <a href="{% url 'student_apply_room' %}" class="btn btn-primary mt-2">Apply Now</a>
+            </div>
+        {% endif %}
+    </div>
+
+    
+
+</div>
+
+<style>
+.hover-shadow:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+.card img {
+    height: 120px;
+    object-fit: cover;
+}
+</style>
+
+
+<script>
+document.getElementById('checkRoomsBtn').addEventListener('click', function() {
+    fetch("{% url 'available_rooms' %}")
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById('availableRoomsList');
+            list.innerHTML = ''; // Clear previous
+
+            if(data.available_rooms.length === 0){
+                list.innerHTML = '<li class="list-group-item">No rooms available right now.</li>';
+            } else {
+                data.available_rooms.forEach(room => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = 'Room ' + room;
+                    list.appendChild(li);
+                });
+            }
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('availableRoomsModal'));
+            modal.show();
+        });
+});
+</script>
+
+
+{% endblock %}

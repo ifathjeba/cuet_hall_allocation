@@ -32,11 +32,10 @@ class SignUpForm(UserCreationForm):
 class RoomApplicationForm(forms.ModelForm):
     class Meta:
         model = RoomApplication
-        exclude = ['status', 'applied_at']
+        fields = ['email', 'year', 'cgpa', 'room_type', 'room_number', 'special_request']
         widgets = {
-            'gender': forms.Select(attrs={'class': 'form-control'}),
             'year': forms.Select(attrs={'class': 'form-control'}),
-            'hall': forms.Select(attrs={'class': 'form-control'}),
             'room_type': forms.Select(attrs={'class': 'form-control'}),
-            'room_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your room number'}),
+            'room_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Optional'}),
+            'special_request': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }

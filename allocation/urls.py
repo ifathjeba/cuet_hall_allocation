@@ -22,4 +22,8 @@ urlpatterns = [
 
     path('available-rooms/', views.available_rooms, name='available_rooms'),
 
+    path('application/approve/<int:app_id>/', views.approve_application, name='approve_application'),
+    path('application/reject/<int:app_id>/', views.reject_application, name='reject_application'),
+
+
 ]

@@ -55,35 +55,24 @@ class Profile(models.Model):
         return self.user.username
 
 
+STATUS_CHOICES = [
+    ('pending', 'Pending'),
+    ('approved', 'Approved'),
+    ('rejected', 'Rejected'),
+]
+
 
 class RoomApplication(models.Model):
-    # Personal info
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    student_id = models.CharField(max_length=50)
     email = models.EmailField()
-    phone = models.CharField(max_length=20)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-
-    # Academic info
-    department = models.CharField(max_length=50)
     year = models.CharField(max_length=1, choices=YEAR_CHOICES)
-    session = models.CharField(max_length=20)
-
-    # Room preferences
-    hall = models.CharField(max_length=50, choices=HALL_CHOICES)
+    cgpa = models.FloatField()
     room_type = models.CharField(max_length=50, choices=ROOM_TYPE_CHOICES)
     room_number = models.CharField(max_length=10, blank=True, null=True)
-    special_requests = models.TextField(blank=True, null=True)
+    special_request = models.TextField(blank=True, null=True)
 
-    # Guardian info
-    guardian_name = models.CharField(max_length=100)
-    guardian_phone = models.CharField(max_length=20)
-    guardian_email = models.EmailField(blank=True, null=True)
-
-    # System fields
-    status = models.CharField(max_length=20, default='pending')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     applied_at = models.DateTimeField(auto_now_add=True)
+    allocated_at = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.student_id} - {self.hall}"
+        return f"{self.email} - {self.room_type}"
