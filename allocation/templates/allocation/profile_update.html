@@ -16,32 +16,31 @@
 
         <form method="POST" action="{% url 'profile_update' %}">
             {% csrf_token %}
-            
-            <div class="mb-3">
-                {{ form.student_id.label_tag }}
-                {{ form.student_id }}
-                {% for err in form.student_id.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
-            </div>
+
             <div class="mb-3">
                 {{ form.phone.label_tag }}
                 {{ form.phone }}
                 {% for err in form.phone.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
             </div>
+
             <div class="mb-3">
                 {{ form.gender.label_tag }}
                 {{ form.gender }}
                 {% for err in form.gender.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
             </div>
+
             <div class="mb-3">
                 {{ form.department.label_tag }}
                 {{ form.department }}
                 {% for err in form.department.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
             </div>
+
             <div class="mb-3">
                 {{ form.year.label_tag }}
                 {{ form.year }}
                 {% for err in form.year.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
             </div>
+
             <div class="mb-3">
                 {{ form.session.label_tag }}
                 {{ form.session }}

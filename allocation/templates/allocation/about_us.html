@@ -1,55 +1,99 @@
 {% extends 'allocation/base.html' %}
+{% load static %}
 
 {% block title %}About Us - NestMate CUET{% endblock %}
 
 {% block content %}
 <div class="container py-5">
+
     <!-- Hero Section -->
     <div class="text-center mb-5">
-        <h1 style="color: #00000d; font-weight: 700;">About NestMate CUET</h1>
-        <p class="lead" style="color: #00000d;">Making hall allocation seamless, transparent, and student-friendly at CUET.</p>
+        <h1 class="fw-bold" style="color: #000000;">About NestMate CUET</h1>
+        <p class="lead" style="color: #000000;">
+            Making hall allocation seamless, transparent, and student-friendly at CUET.
+        </p>
     </div>
 
     <!-- Our Mission -->
     <section class="mb-5">
-        <h2 style="color: #00000d; font-weight: 600;">Our Mission</h2>
-        <p style="color: #00000d; font-size: 1.1rem;">
-            Our mission is to simplify the hall allocation process for students and authorities at CUET. 
-            We strive to provide a transparent, efficient, and accessible platform for everyone to manage dormitories effectively.
-        </p>
+        <div class="row align-items-center g-4">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm" style="background-color: #dbc2d0ff; border-radius: 15px;">
+                    <h2 class="fw-semibold mb-3" style="color: #000000;">Our Mission</h2>
+                    <p style="color: #000000; font-size: 1.05rem;">
+                        Our mission is to simplify the hall allocation process for students and authorities at CUET. 
+                        We strive to provide a transparent, efficient, and accessible platform for everyone to manage dormitories effectively.
+                    </p>
+                    <ul class="mt-3" style="color:#000000;">
+                        <li>Transparent allocation process</li>
+                        <li>Student-friendly application</li>
+                        <li>Efficient management for authorities</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{% static 'img/17.jpg' %}" alt="Team Group" class="img-fluid rounded shadow-sm" style="max-height: 300px; object-fit: cover;">
+            </div>
+        </div>
     </section>
 
     <!-- Our Vision -->
     <section class="mb-5">
-        <h2 style="color:#00000d; font-weight: 600;">Our Vision</h2>
-        <p style="color: #00000d; font-size: 1.1rem;">
-            To create a modern, digital-first campus environment where students can focus on academics and authorities can manage halls efficiently, without unnecessary physical meetings.
-        </p>
+        <div class="row align-items-center g-4 flex-row-reverse">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm" style="background-color: #ebe5df; border-radius: 15px;">
+                    <h2 class="fw-semibold mb-3" style="color: #000000;">Our Vision</h2>
+                    <p style="color: #000000; font-size: 1.05rem;">
+                        To create a modern, digital-first campus environment where students can focus on academics 
+                        and authorities can manage halls efficiently, without unnecessary physical meetings.
+                    </p>
+                    <ul class="mt-3" style="color:#000000;">
+                        <li>Digital-first campus approach</li>
+                        <li>Streamlined hall management</li>
+                        <li>Empowered students & authorities</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{% static 'img/5.jpg' %}" alt="Vision Illustration" class="img-fluid rounded shadow-sm" style="max-height: 300px; object-fit: cover;">
+            </div>
+        </div>
     </section>
 
     <!-- What We Do -->
     <section>
-        <h2 style="color:#00000d; font-weight: 600;">What We Do</h2>
-        <div class="row mt-4 g-4">
+        <h2 class="fw-semibold mb-4 text-center" style="color: #000000;">What We Do</h2>
+        <div class="row g-4">
+            
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm p-3" style="background-color: #ffffffff;">
-                    <h5 style="color: #00000d;">Easy Hall Application</h5>
-                    <p>Students can apply for rooms online and choose preferred halls without visiting the provost.</p>
+                <div class="card h-100 shadow-sm p-3 text-center" style="background-color: #f0dcc9ff; border-radius: 15px;">
+                    <img src="{% static 'img/16.jpg' %}" alt="Allocation" class="mb-2 img-fluid" style="height:80px; object-fit: contain;">
+                    <h5 class="fw-bold mb-2" style="color: #000000;">Efficient Allocation</h5>
+                    <p style="color: #000000;">
+                        Authorities can allocate rooms based on capacity, preferences, and availability with ease.
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm p-3" style="background-color:#ffffffff;">
-                    <h5 style="color: #00000d;">Efficient Allocation</h5>
-                    <p>Authorities can allocate rooms based on capacity, preferences, and availability with ease.</p>
+                <div class="card h-100 shadow-sm p-3 text-center" style="background-color: #dbbdcdff; border-radius: 15px;">
+                    <i class="bi bi-eye-fill mb-2" style="font-size:2rem; color:#000000;"></i>
+                    <h5 class="fw-bold mb-2" style="color: #000000;">Transparency & Monitoring</h5>
+                    <p style="color: #000000;">
+                        Every allocation is visible to students and authorities, ensuring a fair and accountable system.
+                    </p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm p-3" style="background-color:#ffffffff;">
-                    <h5 style="color: #00000d;">Transparency & Monitoring</h5>
-                    <p>Every allocation is visible to students and authorities, ensuring a fair and accountable system.</p>
+                <div class="card h-100 shadow-sm p-3 text-center position-relative" style="background-color: #63a09dff; border-radius: 15px;">
+                    <img src="{% static 'img/14.jpg' %}" alt="Student" class="position-absolute top-0 start-50 translate-middle-x" style="width: 70px; border-radius:50%; margin-top:-35px; border:3px solid white;">
+                    <h5 class="fw-bold mb-2 text-white mt-4">Easy Hall Application</h5>
+                    <p class="text-white">
+                        Students can apply for rooms online and choose preferred halls without visiting the provost.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
+
 </div>
 {% endblock %}

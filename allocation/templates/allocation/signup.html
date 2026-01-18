@@ -1,57 +1,82 @@
 {% extends 'allocation/base.html' %}
 {% load static %}
-
-{% block title %}Sign Up - NestMate CUET{% endblock %}
+{% block title %}Sign Up | NestMate CUET{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card shadow-lg p-4" style="max-width: 540px; width: 100%; border-radius: 15px;">
-        <h2 class="text-center mb-4">Sign Up</h2>
+<style>
+    .auth-wrapper {
+        min-height: 90vh;
+        background: linear-gradient(135deg, #E6E0FF,  #927ddfff);
+    }
+    .auth-card {
+        border-radius: 18px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .brand-text {
+        color: #000000ff;
+        font-weight: 700;
+    }
+    .btn-theme {
+        background-color: #11003fff;
+        color: #fff;
+        border-radius: 30px;
+    }
+    .btn-theme:hover {
+        background-color: #1a0850;
+        color: #fff;
+    }
+</style>
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
+<div class="auth-wrapper d-flex align-items-center justify-content-center">
+    <div class="card auth-card p-4" style="max-width:520px; width:100%;">
+        <div class="text-center mb-3">
+            <h3 class="brand-text">NestMate CUET</h3>
+            <p class="text-muted small">Create your account</p>
+        </div>
 
-        <form method="POST" action="{% url 'signup' %}">
+        {% for message in messages %}
+            <div class="alert alert-danger small">{{ message }}</div>
+        {% endfor %}
+
+        <form method="POST">
             {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                {{ form.email }}
+            </div>
+
             <div class="row">
-                <div class="col-12 mb-3">
-                    {{ form.username.label_tag }}
-                    {{ form.username }}
-                    {% for err in form.username.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
-                </div>
-                <div class="col-12 mb-3">
-                    {{ form.email.label_tag }}
-                    {{ form.email }}
-                    {% for err in form.email.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
-                </div>
                 <div class="col-md-6 mb-3">
-                    {{ form.password1.label_tag }}
+                    <label class="form-label">Password</label>
                     {{ form.password1 }}
-                    {% for err in form.password1.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
                 </div>
                 <div class="col-md-6 mb-3">
-                    {{ form.password2.label_tag }}
+                    <label class="form-label">Confirm Password</label>
                     {{ form.password2 }}
-                    {% for err in form.password2.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
-                </div>
-                <div class="col-12 mb-3">
-                    {{ form.user_type.label_tag }}
-                    {{ form.user_type }}
-                    {% for err in form.user_type.errors %}<div class="text-danger small">{{ err }}</div>{% endfor %}
                 </div>
             </div>
 
-            <div class="d-grid">
-                <button type="submit" class="btn" style="background-color:#210a61;color:#fff;">Sign Up</button>
+            <div class="mb-3">
+                <label class="form-label">Account Type</label>
+                {{ form.user_type }}
             </div>
 
-            <p class="text-center mt-3">
-                Already have an account? <a href="{% url 'login' %}">Login</a>
-            </p>
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-theme py-2">
+                    Create Account
+                </button>
+            </div>
         </form>
+
+        <div class="text-center mt-4">
+            <p class="small text-muted">
+                Already registered?
+                <a href="{% url 'login' %}" class="fw-semibold" style="color:#210a61;">
+                    Login here
+                </a>
+            </p>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -1,31 +1,107 @@
 {% extends 'allocation/base.html' %}
 {% load static %}
-
-{% block title %}Login - NestMate CUET{% endblock %}
+{% block title %}Login | NestMate CUET{% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card p-4" style="max-width: 420px; width:100%;">
-        <h3 class="text-center mb-3">Login</h3>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        <form method="POST" action="{% url 'login' %}">
+<style>
+    .auth-wrapper {
+        min-height: 90vh;
+        background: linear-gradient(135deg, #E6E0FF, #927ddfff);
+    }
+    .auth-card {
+        border-radius: 18px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .brand-text {
+        color: #000000ff;
+        font-weight: 700;
+    }
+    .btn-theme {
+        background-color: #11003fff;
+        color: #fff;
+        border-radius: 30px;
+    }
+    .btn-theme:hover {
+        background-color: #1a0850;
+        color: #fff;
+    }
+    .password-wrapper {
+        position: relative;
+    }
+    .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #210a61;
+        font-size: 1rem;
+    }
+</style>
+
+<div class="auth-wrapper d-flex align-items-center justify-content-center">
+    <div class="card auth-card p-4" style="max-width:420px; width:100%;">
+        <div class="text-center mb-3">
+            <h3 class="brand-text">NestMate CUET</h3>
+            <p class="text-muted small">Hall Allocation Management System</p>
+        </div>
+
+        {% for message in messages %}
+            <div class="alert alert-danger small">{{ message }}</div>
+        {% endfor %}
+
+        <form method="POST">
             {% csrf_token %}
+
             <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" required>
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control rounded-pill" placeholder="Enter your CUET email" required>
             </div>
-            <div class="mb-3">
+
+            <!-- Password field with toggle -->
+            <div class="mb-3 password-wrapper">
                 <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" id="password" name="password" class="form-control rounded-pill" placeholder="••••••••" required>
+                <span class="toggle-password" onclick="togglePassword()">
+                    <i class="bi bi-eye" id="eyeIcon"></i>
+                </span>
             </div>
-            <div class="d-grid">
-                <button type="submit" class="btn" style="background-color:#210a61;color:#fff;">Login</button>
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-theme py-2">
+                    Login
+                </button>
             </div>
         </form>
+
+        <div class="text-center mt-4">
+            <p class="small text-muted">
+                New to NestMate?
+                <a href="{% url 'signup' %}" class="fw-semibold" style="color:#210a61;">
+                    Create an account
+                </a>
+            </p>
+        </div>
     </div>
 </div>
+
+<!-- Bootstrap Icons CDN (for eye icon) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.remove('bi-eye');
+        eyeIcon.classList.add('bi-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('bi-eye-slash');
+        eyeIcon.classList.add('bi-eye');
+    }
+}
+</script>
+
 {% endblock %}

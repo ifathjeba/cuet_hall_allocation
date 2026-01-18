@@ -16,54 +16,78 @@ def home(request):
     return render(request, 'allocation/home.html', {'halls': halls})
 
 
+
+
+# ================= SIGNUP =================
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.email = form.cleaned_data['email']
-            user.save()
+            user = form.save()
 
-            # Update profile user_type
-            user_type = form.cleaned_data.get('user_type', 'student')
-            profile, created = Profile.objects.get_or_create(user=user)
-            profile.user_type = user_type
+            profile, _ = Profile.objects.get_or_create(user=user)
+            profile.user_type = form.cleaned_data['user_type']
             profile.save()
 
-            if user_type == 'authority':
+            if profile.user_type == 'authority':
                 user.is_staff = True
                 user.save()
 
             login(request, user)
+
             if profile.user_type == 'authority':
                 return redirect('authority_dashboard')
             return redirect('student_dashboard')
-        else:
-            messages.error(request, 'Please correct the errors below.')
+
+        messages.error(request, "Please fix the errors below.")
     else:
         form = SignUpForm()
+
     return render(request, 'allocation/signup.html', {'form': form})
 
 
+# ================= LOGIN (EMAIL BASED) =================
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+
+        try:
+            user_obj = User.objects.get(email=email)
+            user = authenticate(request, username=user_obj.username, password=password)
+        except User.DoesNotExist:
+            user = None
+
         if user:
             login(request, user)
-            profile, _ = Profile.objects.get_or_create(user=user)
+            profile = Profile.objects.get(user=user)
+
             if profile.user_type == 'authority':
                 return redirect('authority_dashboard')
             return redirect('student_dashboard')
-        else:
-            messages.error(request, 'Invalid username or password')
+
+        messages.error(request, "Invalid email or password")
+
     return render(request, 'allocation/login.html')
 
 
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+# ================= DASHBOARDS =================
+@login_required
+def student_dashboard(request):
+    applications = RoomApplication.objects.filter(email=request.user.email)
+    return render(request, 'allocation/student_dashboard.html', {'applications': applications})
+
+
+@login_required
+def authority_dashboard(request):
+    applications = RoomApplication.objects.filter(status='pending')
+    return render(request, 'allocation/authority_dashboard.html', {'applications': applications})
+
 
 
 
@@ -81,23 +105,16 @@ def student_apply_room(request):
     if request.method == 'POST':
         form = RoomApplicationForm(request.POST)
         if form.is_valid():
-            form.save()
+            app = form.save(commit=False)
+            app.email = request.user.email  # auto-set email
+            app.save()
             messages.success(request, "Your application has been submitted and sent to authority!")
             return redirect('student_dashboard')
     else:
         form = RoomApplicationForm()
+    
     return render(request, 'allocation/apply_room.html', {'form': form})
 
-@login_required
-def student_dashboard(request):
-    applications = RoomApplication.objects.filter(email=request.user.email).order_by('-applied_at')
-    return render(request, 'allocation/student_dashboard.html', {'applications': applications})
-
-# Authority Dashboard
-@login_required
-def authority_dashboard(request):
-    applications = RoomApplication.objects.filter(status='pending').order_by('applied_at')
-    return render(request, 'allocation/authority_dashboard.html', {'applications': applications})
 
 
 
